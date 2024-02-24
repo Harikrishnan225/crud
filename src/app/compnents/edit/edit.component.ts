@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentDetailsService } from 'src/app/services/students/student-details.service';
-import { SharedService } from 'src/app/services/shared/shared.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -14,46 +13,57 @@ import { Router } from '@angular/router';
   providers: [StudentDetailsService]
 })
 export class EditComponent {
-  myForm!: FormGroup;
+  studentDetailsUpdatedForm!: FormGroup;
   selectedStudent: any;
   studentId: any;
   updates: any;
+  studentValueId: any;
 
   constructor(private fb: FormBuilder,
-    private studentDetails: StudentDetailsService,
-    private sharedService: SharedService,
-    private router: Router
+    private studentServiceDetails: StudentDetailsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      studentId: ['', Validators.required],
+    this.studentDetailsUpdatedForm = this.fb.group({
+      studentId: [{ value: '', disabled: true }],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      age: ['', [Validators.required, Validators.min(0)]],
+      age: ['', [Validators.required, Validators.min(2)]],
       email: ['', [Validators.required, Validators.email]]
     });
+    this.activatedRoute.params.subscribe(studentDetailsId => {
+      this.studentId = studentDetailsId['id'];
+      console.log(this.studentId);
+    }, err => {
+      console.log('Cant able to fetch StudentId' + err);
+    });
 
-    this.sharedService.selectedStudent$.subscribe((student) => {
-      this.selectedStudent = student;
+    this.getStudentData();
+  }
+
+  getStudentData() {
+    this.studentServiceDetails.getStudentDetailsById(this.studentId).subscribe(studentData => {
+      this.selectedStudent = studentData;
       if (this.selectedStudent) {
-        this.myForm.patchValue({
+        this.studentDetailsUpdatedForm.patchValue({
           studentId: this.selectedStudent._id,
           firstName: this.selectedStudent.firstName,
           lastName: this.selectedStudent.lastName,
           age: this.selectedStudent.age,
           email: this.selectedStudent.email
         });
-      }
+      };
     });
+
   }
 
-
-  updateStudent(): void {
-    if (this.myForm.valid) {
-      const updates = this.myForm.value;
-      const studentId = this.selectedStudent._id; 
-      this.studentDetails.updateStudent(studentId, updates).subscribe(
+  updateStudentDetails(): void {
+    if (this.studentDetailsUpdatedForm.valid) {
+      const updates = this.studentDetailsUpdatedForm.value;
+      const studentId = this.selectedStudent._id;
+      this.studentServiceDetails.updateStudentDetailsById(studentId, updates).subscribe(
         () => {
           console.log('Student updated successfully');
           this.router.navigateByUrl('/view');

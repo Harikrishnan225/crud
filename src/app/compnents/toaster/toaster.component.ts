@@ -21,6 +21,6 @@ export class ToasterComponent {
 
 
   showToasterSuccess(){
-    this.toastr.success()
+    this.toastr.success();
   }
 }

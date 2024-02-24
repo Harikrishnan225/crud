@@ -11,19 +11,24 @@ export class StudentDetailsService {
 
   constructor(private http: HttpClient) { }
 
-  getStudents(): Observable<any[]> {
+  getStudentsDetails(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  addStudent(studentData: any): Observable<any> {
+  addStudentDetails(studentData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, studentData);
   }
 
-  updateStudent(studentId: any, updatedStudentDetails: any): Observable<any> {
+  getStudentDetailsById(studentId: string): Observable<any> {
+    console.log(typeof(studentId));
+    return this.http.get<any>(`${this.apiUrl}/${studentId}`);    
+  }
+
+  updateStudentDetailsById(studentId: any, updatedStudentDetails: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${studentId}`, updatedStudentDetails);
   }
 
-  deleteStudent(studentId: any): Observable<any> {
+  deleteStudentDetails(studentId: String): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${studentId}`);
   }
 }

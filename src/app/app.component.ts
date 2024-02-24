@@ -4,6 +4,8 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './compnents/header/header.component';
 import { FooterComponent } from './compnents/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',

@@ -1,3 +1,31 @@
 .underline {
     text-decoration: none;
 }
+.netflex-header {
+    color: rgb(229, 9, 20);
+}
+
+.card-background-width {
+    width: 34%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 48px 50px;
+}
+
+#image-background {
+    background-image: url("../../../assets/netflix_backgroundimg.jpg");
+}
+
+@media only screen and (max-width: 600px) {
+    .card-background-width {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 48px 50px;
+    }
+    #image-background {
+        background-image: none;
+    }
+}

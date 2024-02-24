@@ -3,20 +3,21 @@ import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentDetailsService } from 'src/app/services/students/student-details.service';
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add',
   standalone: true,
   imports: [
     CommonModule,
-     ReactiveFormsModule
-    ],
+    ReactiveFormsModule
+  ],
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
   providers: [StudentDetailsService]
 })
 export class AddComponent {
-  myForm!: FormGroup;
+  studentAddingForm!: FormGroup;
   students: any[] = [];
 
   constructor(private fb: FormBuilder,
@@ -25,26 +26,25 @@ export class AddComponent {
   ) { }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
+    this.studentAddingForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       age: ['', [
         Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(2),
-        Validators.pattern(/^\d+$/),
+        Validators.minLength(2),
+        Validators.maxLength(3)
       ]
-    ],
+      ],
       email: ['', [Validators.required, Validators.email]]
     });
   }
 
 
-  onSubmit(): void {
-    if (this.myForm.valid) {
-      console.log(this.myForm.value);
+  userCreatingSubmit(): void {
+    if (this.studentAddingForm.valid) {
+      console.log(this.studentAddingForm.value);
 
-      this.studentService.addStudent(this.myForm.value).subscribe({
+      this.studentService.addStudentDetails(this.studentAddingForm.value).subscribe({
         next: (value) => {
           console.log('Student added successfully');
           this._location.back();

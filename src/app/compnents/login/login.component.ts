@@ -21,30 +21,30 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  email!: string;
+  emailorphonenumber!: string;
   password!: string;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
   ) { }
 
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      emailorphonenumber: ['', Validators.required],
       password: ['', Validators.required],
     });
 
     this.loginForm.valueChanges.subscribe((formValues) => {
-      this.email = formValues.email;
+      this.emailorphonenumber = formValues.email;
       this.password = formValues.password;
     });
   }
 
   onLoginFormSubmit() {
-    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe((response) => {
+    this.loginService.login(this.loginForm.value.emailorphonenumber, this.loginForm.value.password).subscribe((response) => {
       console.log('Token:', response.token);
     });
   }

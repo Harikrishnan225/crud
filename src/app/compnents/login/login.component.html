@@ -1,38 +1,53 @@
-<div class="container m-5 d-flex justify-content-center">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Student Login</h3>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()">
-
-                    <div class="mb-3 row">
-                        <label for="email" class="col-sm-3 col-form-label">Email:</label>
-                        <div class="col-sm-8">
-                            <input type="email" id="email" class="form-control" formControlName="email">
+<div id="image-background">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="card vh-100 card-background-width m-3">
+                <div class="card-body">
+                    <div class="card-title text-white h1">Sign In</div>
+                    <form [formGroup]="loginForm">
+                        <div class="card-text">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control p-3 my-2 bg-transparent" placeholder="Email or phone number"
+                                    formControlName="emailorphonenumber" aria-label="Username">
+                                <span class="text-danger"
+                                    *ngIf="loginForm.get('emailorphonenumber')?.hasError && loginForm.get('emailorphonenumber')?.touched">Please
+                                    enter the valid email address or phone number</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control p-3 my-2 bg-transparent" placeholder="Username"
+                                    formControlName="password" aria-label="Username">
+                                <span class="text-danger"
+                                    *ngIf="loginForm.get('password')?.hasError && loginForm.get('password')?.touched">Your
+                                    Password must contain between 4 and 10
+                                    characters</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-danger w-100 my-2 m-1">Sign In</button>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a class="link-offset-2 link-offset-3-hover link-light link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-white fs-6 mb-5"
+                                    href="#" role="link">Forgot password? </a>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-footer mt-5">
+                        <div>
+                            <div class="mb-3">
+                                <input class="form-check-input mx-1" id="rememberme" type="checkbox" value="">
+                                <label for="rememberme" class="text-white fs-6">Remember Me</label>
+                            </div>
+                            <div class="mb-3">
+                                <span class="text-white mx-1 text-secondary">New to Netflix?</span>
+                                <a class="link-offset-2 link-offset-3-hover link-light link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-white fs-6"
+                                    href="#" role="link">Sign up now </a>
+                            </div>
+                            <div>
+                                <span class="text-white">This page is protected by Google reCAPTCHA to ensure your'e not
+                                    a bot <small class="text-primary">Learn More</small></span>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="mb-3 row">
-                        <label for="password" class="col-sm-3 col-form-label">Password:</label>
-                        <div class="col-sm-8">
-                            <input type="password" id="password" class="form-control" formControlName="password">
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <div class="col-sm-8 offset-sm-3">
-                            <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
-                        </div>
-                        <div class="mt-2">
-                            Don't have account?
-                            <a href="/signup" class="underline">Sign up</a>
-                        </div>
-                    </div>
-
-                </form>
-
+                </div>
             </div>
         </div>
     </div>
