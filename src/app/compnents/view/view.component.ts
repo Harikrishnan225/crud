@@ -2,16 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentDetailsService } from 'src/app/services/students/student-details.service';
 import { Router, RouterLink } from '@angular/router';
-import { DeleteComponent } from '../delete/delete.component';
-;
 
 @Component({
   selector: 'app-view',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
-    DeleteComponent
+    RouterLink
   ],
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
