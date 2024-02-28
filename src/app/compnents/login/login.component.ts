@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StudentDetailsService } from 'src/app/services/students/student-details.service';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login/login.service';
+import { LoginService } from '../../services/login/login.service';
+import { StudentDetailsService } from '../../services/students/student-details.service';
 
 @Component({
   selector: 'app-login',

@@ -3,7 +3,6 @@ import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentDetailsService } from 'src/app/services/students/student-details.service';
-import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add',
@@ -19,6 +18,7 @@ import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 export class AddComponent {
   studentAddingForm!: FormGroup;
   students: any[] = [];
+  dropDownData: any;
 
   constructor(private fb: FormBuilder,
     private studentService: StudentDetailsService,
@@ -35,7 +35,8 @@ export class AddComponent {
         Validators.maxLength(3)
       ]
       ],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      standard: ['', Validators.required]
     });
   }
 
@@ -43,7 +44,6 @@ export class AddComponent {
   userCreatingSubmit(): void {
     if (this.studentAddingForm.valid) {
       console.log(this.studentAddingForm.value);
-
       this.studentService.addStudentDetails(this.studentAddingForm.value).subscribe({
         next: (value) => {
           console.log('Student added successfully');
@@ -54,5 +54,17 @@ export class AddComponent {
         }
       });
     }
+  }
+
+  dropDownStandard(): void {
+    this.studentService.getStandards().subscribe(result => {
+      console.log(result);
+      this.dropDownData = result;
+      console.log(this.dropDownData);
+
+    }, err => {
+      console.log(err);
+
+    })
   }
 }

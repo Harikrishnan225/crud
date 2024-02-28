@@ -1,18 +1,40 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToasterComponent } from 'src/app/compnents/toaster/toaster.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToasterService {
+  constructor(
+    private snackBar: MatSnackBar
+  ) { }
 
-  constructor(private toastr: ToastrService) {}
-
-  showSuccess(message: string, title: string = 'Success'): void {
-    this.toastr.success(message, title);
+  success(toasterContent: any): void {
+    this.snackBar.openFromComponent(ToasterComponent, {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      duration: 3000,
+      panelClass: ['transparent-snackbar'],
+      data: {
+        toasterSuccess: true,
+        toasterContent: toasterContent
+      }
+    });
   }
 
-  showError(message: string, title: string = 'Error'): void {
-    this.toastr.error(message, title);
+  error(toasterContent: string): void {
+    this.snackBar.openFromComponent(ToasterComponent, {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      duration: 3000,
+      panelClass: ['transparent-snackbar'],
+      data: {
+        toasterSuccess: false,
+        toasterContent: toasterContent
+      }
+    });
   }
+
 }

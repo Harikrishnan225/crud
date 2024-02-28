@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StudentDetailsService } from 'src/app/services/students/student-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentDetailsService } from '../../services/students/student-details.service';
 
 @Component({
   selector: 'app-edit',
@@ -31,7 +31,8 @@ export class EditComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       age: ['', [Validators.required, Validators.min(2)]],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      standard: ['', Validators.required]
     });
     this.activatedRoute.params.subscribe(studentDetailsId => {
       this.studentId = studentDetailsId['id'];
@@ -52,7 +53,8 @@ export class EditComponent {
           firstName: this.selectedStudent.firstName,
           lastName: this.selectedStudent.lastName,
           age: this.selectedStudent.age,
-          email: this.selectedStudent.email
+          email: this.selectedStudent.email,
+          standard: this.selectedStudent._id
         });
       };
     });
@@ -66,7 +68,7 @@ export class EditComponent {
       this.studentServiceDetails.updateStudentDetailsById(studentId, updates).subscribe(
         () => {
           console.log('Student updated successfully');
-          this.router.navigateByUrl('/view');
+          this.router.navigateByUrl('/students');
         },
         error => {
           console.error('Error updating student:', error);

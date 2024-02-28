@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class StudentDetailsService {
 
   private apiUrl = 'http://localhost:3000/students';
+  private standardapiUrl = 'http://localhost:3000/standard';
 
   constructor(private http: HttpClient) { }
 
@@ -15,13 +16,16 @@ export class StudentDetailsService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  getStandards(): Observable<any> {
+    return this.http.get<any>(this.standardapiUrl);
+  }
+
   addStudentDetails(studentData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, studentData);
   }
 
   getStudentDetailsById(studentId: string): Observable<any> {
-    console.log(typeof(studentId));
-    return this.http.get<any>(`${this.apiUrl}/${studentId}`);    
+    return this.http.get<any>(`${this.apiUrl}/${studentId}`);
   }
 
   updateStudentDetailsById(studentId: any, updatedStudentDetails: any): Observable<any> {

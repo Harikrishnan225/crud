@@ -1,3 +1,18 @@
-<h2>Toaster Works</h2>
-
-<button (click)="showToasterSuccess()" mat-raised-button color="primary">success</button>
+<div class="container-fluid mt-5 py-2 rounded" [ngClass]="toasterSuccess ? 'success-container' : 'error-container' ">
+    <div class="row">
+        <div class="col-2 d-flex justify-content-center align-items-center">
+            <i class="h3" [ngClass]="toasterSuccess ? 'bi bi-check-circle-fill': 'bi bi-exclamation-circle-fill'"></i>
+        </div>
+        <div class="col-10">
+            <p class="fw-bold mb-0" *ngIf="toasterSuccess">
+                SUCCESS!
+            </p>
+            <p class="fw-bold mb-0" *ngIf="!toasterSuccess">
+                ERROR!
+            </p>
+            <p class="mb-0">
+                {{toasterMessage}}
+            </p>
+        </div>
+    </div>
+</div>

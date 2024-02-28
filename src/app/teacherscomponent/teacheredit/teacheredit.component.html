@@ -2,15 +2,15 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title text-center">Update Student Details</h2>
+                <h2 class="card-title text-center">Update teacher Details</h2>
             </div>
             <div class="card-body">
-                <form [formGroup]="studentDetailsUpdatedForm">
+                <form [formGroup]="teachersDetailsUpdatedForm">
 
                     <div class="mb-3 row">
-                        <label for="studentId" class="col-sm-3 col-form-label">Student Id:</label>
+                        <label for="teacherId" class="col-sm-3 col-form-label">teacher Id:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="studentId" class="form-control" formControlName="studentId">
+                            <input type="text" id="teacherId" class="form-control" formControlName="teachersId">
                         </div>
                     </div>
 
@@ -19,7 +19,7 @@
                         <div class="col-sm-8">
                             <input type="text" id="firstName" class="form-control" formControlName="firstName">
                             <span class="text-danger"
-                                *ngIf="studentDetailsUpdatedForm.get('firstName')?.hasError && studentDetailsUpdatedForm.get('firstName')?.touched">student
+                                *ngIf="teachersDetailsUpdatedForm.get('firstName')?.hasError && teachersDetailsUpdatedForm.get('firstName')?.touched">teacher
                                 first name required</span>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <div class="col-sm-8">
                             <input type="text" id="lastName" class="form-control" formControlName="lastName">
                             <span class="text-danger"
-                                *ngIf="studentDetailsUpdatedForm.get('lastName')?.hasError && studentDetailsUpdatedForm.get('lastName')?.touched">student
+                                *ngIf="teachersDetailsUpdatedForm.get('lastName')?.hasError && teachersDetailsUpdatedForm.get('lastName')?.touched">teacher
                                 last name required</span>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="col-sm-8">
                             <input type="number" id="age" class="form-control" formControlName="age">
                             <span class="text-danger"
-                                *ngIf="studentDetailsUpdatedForm.get('age')?.hasError && studentDetailsUpdatedForm.get('age')?.touched">Student
+                                *ngIf="teachersDetailsUpdatedForm.get('age')?.hasError && teachersDetailsUpdatedForm.get('age')?.touched">teacher
                                 Age is required</span>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="col-sm-8">
                             <input type="email" id="email" class="form-control" formControlName="email">
                             <span class="text-danger"
-                                *ngIf="studentDetailsUpdatedForm.get('email')?.hasError && studentDetailsUpdatedForm.get('email')?.touched">Student
+                                *ngIf="teachersDetailsUpdatedForm.get('email')?.hasError && teachersDetailsUpdatedForm.get('email')?.touched">teacher
                                 email is required</span>
                         </div>
                     </div>
@@ -59,14 +59,15 @@
                         <div class="col-sm-8">
                             <input type="text" id="standard" class="form-control" formControlName="standard">
                             <span class="text-danger"
-                                *ngIf="studentDetailsUpdatedForm.get('standard')?.hasError && studentDetailsUpdatedForm.get('standard')?.touched">Student
+                                *ngIf="teachersDetailsUpdatedForm.get('standard')?.hasError && teachersDetailsUpdatedForm.get('standard')?.touched">teacher
                                 standard is required</span>
                         </div>
                     </div>
+
                     <div class="mb-3 row">
                         <div class="col-sm-8 offset-sm-3 text-center">
-                            <button type="submit" class="btn btn-primary" (click)="updateStudentDetails()"
-                                [disabled]="studentDetailsUpdatedForm.invalid">Submit</button>
+                            <button type="submit" class="btn btn-primary" (click)="updateteacherDetails()"
+                                [disabled]="teachersDetailsUpdatedForm.invalid">Submit</button>
                         </div>
                     </div>
 

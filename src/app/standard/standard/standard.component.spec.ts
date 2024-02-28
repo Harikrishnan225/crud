@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteComponent } from './delete.component';
+import { StandardComponent } from './standard.component';
 
-describe('DeleteComponent', () => {
-  let component: DeleteComponent;
-  let fixture: ComponentFixture<DeleteComponent>;
+describe('StandardComponent', () => {
+  let component: StandardComponent;
+  let fixture: ComponentFixture<StandardComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DeleteComponent]
+      imports: [StandardComponent]
     });
-    fixture = TestBed.createComponent(DeleteComponent);
+    fixture = TestBed.createComponent(StandardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators, AbstractControl, AsyncValidatorFn } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { Observable, catchError, map, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-create-account',

@@ -1,45 +1,42 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentDetailsService } from 'src/app/services/students/student-details.service';
 import { Router, RouterLink } from '@angular/router';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { StudentDetailsService } from '../../services/students/student-details.service';
 
 @Component({
   selector: 'app-view',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink
+    RouterLink, MatDialogModule, MatSnackBarModule
   ],
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
   providers: [StudentDetailsService]
 })
 export class ViewComponent {
-  items: any;
-  students: any;
+  studentsData: any;
+  studentDeleteData: any;
 
   constructor(
-    private studentDetails: StudentDetailsService,
-    private router: Router
+    private studentDetailsService: StudentDetailsService,
+    private router: Router,
+    private dialog: MatDialog,
+
   ) { }
 
 
   ngOnInit(): void {
-    this.studentDetails.getStudentsDetails().subscribe({
-      next: (data: any[]) => {
-        this.items = data;
-      },
-      error: (error: any) => {
-        console.error('Error fetching student data:', error);
-      }
-    });
     this.getStudentsData();
   }
 
   getStudentsData(): void {
-    this.studentDetails.getStudentsDetails().subscribe(
+    this.studentDetailsService.getStudentsDetails().subscribe(
       students => {
-        this.students = students;
+        this.studentsData = students;
       },
       error => {
         console.error(error);
@@ -48,7 +45,26 @@ export class ViewComponent {
   }
 
   addStudent() {
-    this.router.navigateByUrl('/add');
+    this.router.navigateByUrl('/students/add');
+  }
+
+  deleteItem(id: string): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: ''
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.studentDetailsService.deleteStudentDetails(id).subscribe(
+          () => {
+            console.log('Student deleted successfully');
+            this.ngOnInit();
+          }, error => {
+            console.error(error);
+          });
+      }
+    });
   }
 
 }

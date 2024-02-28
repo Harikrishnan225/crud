@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="text-end mt-4">
-            <button class="btn btn-primary" (click)="addStudent()"><span>&plus;&nbsp;</span>Add</button>
+            <button class="btn btn-primary" (click)="addTeachers()"><span>&plus;&nbsp;</span>Add</button>
         </div>
     </div>
     <div class="row">
@@ -13,20 +13,19 @@
                         <th>LastName</th>
                         <th>Age</th>
                         <th>Email</th>
-                        <th>Standard</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let students of studentsData">
-                        <td>{{students.firstName}}</td>
-                        <td>{{students.lastName}}</td>
-                        <td>{{students.age}}</td>
-                        <td>{{students.email}}</td>
-                        <td>{{students.standard}}</td>
+                    <tr *ngFor="let teachers of teachersData">
+                        <td>{{teachers.firstName}}</td>
+                        <td>{{teachers.lastName}}</td>
+                        <td>{{teachers.age}}</td>
+                        <td>{{teachers.email}}</td>
+                        <td>{{teachers.standard}}</td>
                         <td>
-                            <a class="btn btn-warning btn-sm m-1" [routerLink]="['/students/edit', students._id]">Edit</a>
-                            <a class="btn btn-danger btn-sm" (click)="deleteItem(students._id)">Delete</a>
+                            <a class="btn btn-warning btn-sm m-1" [routerLink]="['/teachers/edit', teachers._id]">Edit</a>
+                            <a class="btn btn-danger btn-sm" (click)="deleteItem(teachers._id)">Delete</a>
                         </td>
                     </tr>
                 </tbody>
