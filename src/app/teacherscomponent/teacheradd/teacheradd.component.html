@@ -49,7 +49,7 @@
                     <div class="mb-3 row">
                         <label for="standard" class="col-sm-3 col-form-label">Standard:</label>
                         <div class="col-sm-8">
-                            <select id="country" (click)="dropDownStandard()" formControlName="standard">
+                            <select id="standard" class="form-select" (click)="dropDownStandard()" formControlName="standard">
                                 <option value="none" [selected]="true">Select Standard</option>
                                 <option *ngFor="let standard of dropDownData" [ngValue]="standard._id">{{
                                     standard.standard
