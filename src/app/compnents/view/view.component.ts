@@ -24,8 +24,7 @@ export class ViewComponent {
   constructor(
     private studentDetailsService: StudentDetailsService,
     private router: Router,
-    private dialog: MatDialog,
-
+    private dialog: MatDialog
   ) { }
 
 

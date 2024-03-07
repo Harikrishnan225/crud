@@ -27,7 +27,7 @@
                     <div class="mb-3 row">
                         <label for="age" class="col-sm-3 col-form-label">Age:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="age" class="form-control" formControlName="age">
+                            <input type="number" id="age" class="form-control" formControlName="age">
                             <span
                                 *ngIf="teacherAddingForm.get('age')?.hasError('required') && teacherAddingForm.get('age')?.touched"
                                 class="text-danger">teacher
@@ -47,13 +47,22 @@
                     </div>
 
                     <div class="mb-3 row">
+                        <label for="password" class="col-sm-3 col-form-label">Password:</label>
+                        <div class="col-sm-8">
+                            <input type="password" id="password" class="form-control" formControlName="password">
+                            <span
+                                *ngIf="teacherAddingForm.get('password')?.hasError('required') && teacherAddingForm.get('password')?.touched"
+                                class="text-danger">teacher password is required</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
                         <label for="standard" class="col-sm-3 col-form-label">Standard:</label>
                         <div class="col-sm-8">
-                            <select id="standard" class="form-select" (click)="dropDownStandard()" formControlName="standard">
+                            <select id="standard" class="form-select" formControlName="standard">
                                 <option value="none" [selected]="true">Select Standard</option>
-                                <option *ngFor="let standard of dropDownData" [ngValue]="standard._id">{{
-                                    standard.standard
-                                    }}</option>
+                                <option *ngFor="let standard of dropDownData" [ngValue]="standard._id">
+                                    {{standard.standard}}</option>
                             </select>
                         </div>
                     </div>

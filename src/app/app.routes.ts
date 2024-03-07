@@ -8,6 +8,7 @@ import { TeachereditComponent } from './teacherscomponent/teacheredit/teacheredi
 import { StandardComponent } from './standard/standard/standard.component';
 import { StandardeditComponent } from './standard/standardedit/standardedit.component';
 import { StandardaddComponent } from './standard/standardadd/standardadd.component';
+import { ViewdetailsComponent } from './standard/viewdetails/viewdetails.component';
 
 export const routes: Routes = [
     {
@@ -49,6 +50,10 @@ export const routes: Routes = [
     {
         path: 'standard/edit/:id',
         component: StandardeditComponent
+    },
+    {
+        path: 'standard/viewdetails/:id',
+        component: ViewdetailsComponent
     },
     {
         path: 'toaster',

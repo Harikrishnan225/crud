@@ -36,7 +36,15 @@ export class AddComponent {
       ]
       ],
       email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
       standard: ['', Validators.required]
+    });
+
+    this.studentService.getStandards().subscribe(result => {
+      this.dropDownData = result;
+    }, err => {
+      console.log(err);
+
     });
   }
 
@@ -56,15 +64,5 @@ export class AddComponent {
     }
   }
 
-  dropDownStandard(): void {
-    this.studentService.getStandards().subscribe(result => {
-      console.log(result);
-      this.dropDownData = result;
-      console.log(this.dropDownData);
 
-    }, err => {
-      console.log(err);
-
-    })
-  }
 }

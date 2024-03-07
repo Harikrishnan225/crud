@@ -10,14 +10,21 @@
                 <thead>
                     <tr>
                         <th>Standard</th>
+                        <th>Student Count</th>
+                        <th>Teachers Count</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let standard of standardDetails">
-                        <td>{{standard.standard}}</td>
+                        <td>{{standard._id}}</td>
+                        <td>{{standard.studentscount}}</td>
+                        <td>{{standard.teacherscount}}</td>
                         <td>
+                            <a class="btn btn-success btn-sm m-1"
+                                [routerLink]="['/standard/viewdetails', standard._id]">View Details</a>
                             <a class="btn btn-warning btn-sm m-1"
-                                [routerLink]="['/standard/edit',standard._id]">Edit</a>
+                                [routerLink]="['/standard/edit/:id',standard._id]">Edit</a>
                             <a class="btn btn-danger btn-sm" (click)="deleteItem(standard._id)">Delete</a>
                         </td>
                     </tr>

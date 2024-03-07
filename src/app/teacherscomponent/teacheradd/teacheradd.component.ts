@@ -29,8 +29,14 @@ export class TeacheraddComponent implements OnInit {
       lastName: ['', Validators.required],
       age: ['', Validators.required],
       email: ['', Validators.required],
+      password: ['', Validators.required],
       standard: ['', Validators.required]
-    })
+    });
+    this.teachersService.getDropDownData().subscribe(result => {
+      this.dropDownData = result;
+    }, err => {
+      console.log(err);
+    });
   }
 
   teacherFormSubmit() {
@@ -46,9 +52,4 @@ export class TeacheraddComponent implements OnInit {
     }
   }
 
-  dropDownStandard() {
-    this.teachersService.getDropDownData().subscribe(result => {
-      this.dropDownData = result;
-    })
-  }
 }

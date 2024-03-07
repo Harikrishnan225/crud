@@ -20,8 +20,12 @@ export class StandardService {
     return this.http.post<any>(this.apiUrl, standardData);
   }
 
+  getStandardDetailsById(standardId: any) {
+    return this.http.get<any>(`${this.apiUrl}/${standardId}`);
+  }
+
   getStandardByUniqueId(standardId: any) {
-    return this.http.get<any>(`${this.apiUrl}/${standardId}`)
+    return this.http.get<any>(`${this.apiUrl}/${standardId}`);
   }
 
   updatedStandard(standardId: any, updatedStandardData: any): Observable<any> {

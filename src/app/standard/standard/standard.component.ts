@@ -35,7 +35,6 @@ export class StandardComponent implements OnInit {
   getStandardData() {
     this.standardService.getStandard().subscribe(result => {
       console.log(result);
-      
       this.standardDetails = result;
     }, err => {
       console.log(err);
