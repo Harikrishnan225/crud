@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentDetailsService } from '../../services/students/student-details.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-edit',
@@ -10,7 +11,7 @@ import { StudentDetailsService } from '../../services/students/student-details.s
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
-  providers: [StudentDetailsService]
+  providers: [StudentDetailsService, ToasterService]
 })
 export class EditComponent {
   studentDetailsUpdatedForm!: FormGroup;
@@ -22,7 +23,8 @@ export class EditComponent {
   constructor(private fb: FormBuilder,
     private studentServiceDetails: StudentDetailsService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,6 @@ export class EditComponent {
     });
     this.activatedRoute.params.subscribe(studentDetailsId => {
       this.studentId = studentDetailsId['id'];
-      console.log(this.studentId);
     }, err => {
       console.log('Cant able to fetch StudentId' + err);
     });
@@ -67,11 +68,11 @@ export class EditComponent {
       const studentId = this.selectedStudent._id;
       this.studentServiceDetails.updateStudentDetailsById(studentId, updates).subscribe(
         () => {
-          console.log('Student updated successfully');
+          this.toaster.success('Student updated successfully');
           this.router.navigateByUrl('/students');
         },
         error => {
-          console.error('Error updating student:', error);
+          this.toaster.error('Error updating student:' + error);
         }
       );
     }

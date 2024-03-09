@@ -1,52 +1,32 @@
-<div id="image-background">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="card vh-100 card-background-width m-3">
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-12 col-md-6 m-auto">
+            <div class="card">
+                <div class="card-title text-center h2 mt-4">
+                    Login
+                </div>
                 <div class="card-body">
-                    <div class="card-title text-white h1">Sign In</div>
                     <form [formGroup]="loginForm">
-                        <div class="card-text">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control p-3 my-2 bg-transparent" placeholder="Email or phone number"
-                                    formControlName="emailorphonenumber" aria-label="Username">
-                                <span class="text-danger"
-                                    *ngIf="loginForm.get('emailorphonenumber')?.hasError && loginForm.get('emailorphonenumber')?.touched">Please
-                                    enter the valid email address or phone number</span>
+                        <div class="mb-3">
+                            <input type="email" class="form-control my-4 py-3" id="userEmail"
+                                placeholder="Email address" formControlName="email">
+                                <div
+                                *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+                               <p class="text-danger">Email is required.</p>
                             </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control p-3 my-2 bg-transparent" placeholder="Username"
-                                    formControlName="password" aria-label="Username">
-                                <span class="text-danger"
-                                    *ngIf="loginForm.get('password')?.hasError && loginForm.get('password')?.touched">Your
-                                    Password must contain between 4 and 10
-                                    characters</span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control my-4 py-3" id="inputPassword"
+                                placeholder="Password" formControlName="password">
+                                <div
+                                *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+                               <p class="text-danger">Password is required.</p>
                             </div>
-                            <div>
-                                <button class="btn btn-danger w-100 my-2 m-1">Sign In</button>
-                            </div>
-                            <div class="text-center mt-3">
-                                <a class="link-offset-2 link-offset-3-hover link-light link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-white fs-6 mb-5"
-                                    href="#" role="link">Forgot password? </a>
-                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="loginFormSubmit()">Login</button>
                         </div>
                     </form>
-                    <div class="card-footer mt-5">
-                        <div>
-                            <div class="mb-3">
-                                <input class="form-check-input mx-1" id="rememberme" type="checkbox" value="">
-                                <label for="rememberme" class="text-white fs-6">Remember Me</label>
-                            </div>
-                            <div class="mb-3">
-                                <span class="text-white mx-1 text-secondary">New to Netflix?</span>
-                                <a class="link-offset-2 link-offset-3-hover link-light link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-white fs-6"
-                                    href="#" role="link">Sign up now </a>
-                            </div>
-                            <div>
-                                <span class="text-white">This page is protected by Google reCAPTCHA to ensure your'e not
-                                    a bot <small class="text-primary">Learn More</small></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

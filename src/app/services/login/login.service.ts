@@ -12,7 +12,7 @@ export class LoginService {
   ) { }
   private apiUrl = 'http://localhost:3000/login';
 
-  login(email: string, password: string): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(this.apiUrl, { email, password });
+  login(loginDetails: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, loginDetails);
   }
 }

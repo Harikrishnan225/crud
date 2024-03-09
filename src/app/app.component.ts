@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './compnents/header/header.component';
 import { FooterComponent } from './compnents/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { CommonInterceptor } from './common.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,10 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true }]
 })
 export class AppComponent {
   title = 'crud';

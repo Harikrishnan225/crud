@@ -3,6 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentDetailsService } from 'src/app/services/students/student-details.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-add',
@@ -13,7 +14,7 @@ import { StudentDetailsService } from 'src/app/services/students/student-details
   ],
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
-  providers: [StudentDetailsService]
+  providers: [StudentDetailsService, ToasterService]
 })
 export class AddComponent {
   studentAddingForm!: FormGroup;
@@ -22,7 +23,8 @@ export class AddComponent {
 
   constructor(private fb: FormBuilder,
     private studentService: StudentDetailsService,
-    private _location: Location
+    private _location: Location,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit() {
@@ -54,11 +56,11 @@ export class AddComponent {
       console.log(this.studentAddingForm.value);
       this.studentService.addStudentDetails(this.studentAddingForm.value).subscribe({
         next: (value) => {
-          console.log('Student added successfully');
+          this.toaster.success('Student added successfully');
           this._location.back();
         },
         error: (error) => {
-          console.error('Error submitting form:', error);
+          this.toaster.error('Error submitting form:' + error);
         }
       });
     }

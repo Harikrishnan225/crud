@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-teacheradd',
@@ -10,7 +11,7 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
     ReactiveFormsModule],
   templateUrl: './teacheradd.component.html',
   styleUrls: ['./teacheradd.component.scss'],
-  providers: [TeachersService]
+  providers: [TeachersService, ToasterService]
 })
 export class TeacheraddComponent implements OnInit {
   teacherAddingForm!: FormGroup;
@@ -20,7 +21,8 @@ export class TeacheraddComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private teachersService: TeachersService,
-    private _location: Location
+    private _location: Location,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -41,14 +43,13 @@ export class TeacheraddComponent implements OnInit {
 
   teacherFormSubmit() {
     if (this.teacherAddingForm.valid) {
-      this.teachersService.addTeachersData(this.teacherAddingForm.value).subscribe({
-        next: (value) => {
-          console.log('Teacher added successfully');
+      this.teachersService.addTeachersData(this.teacherAddingForm.value).subscribe(
+        () => {
+          this.toaster.success('Teacher added successfully');
           this._location.back();
-        }, error(err) {
-          console.log('Cant able to add teachers data' + err);
-        }
-      })
+        }, (err) => {
+          this.toaster.error('Cant able to add teachers data' + err);
+        })
     }
   }
 

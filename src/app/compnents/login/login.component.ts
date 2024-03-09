@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { StudentDetailsService } from '../../services/students/student-details.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-login',
@@ -15,38 +16,49 @@ import { StudentDetailsService } from '../../services/students/student-details.s
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers: [
+    ToasterService,
     StudentDetailsService,
     LoginService
   ]
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  emailorphonenumber!: string;
-  password!: string;
+  loginData: any
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private toaster: ToasterService,
     private loginService: LoginService,
   ) { }
 
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      emailorphonenumber: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-    });
-
-    this.loginForm.valueChanges.subscribe((formValues) => {
-      this.emailorphonenumber = formValues.email;
-      this.password = formValues.password;
     });
   }
 
-  onLoginFormSubmit() {
-    this.loginService.login(this.loginForm.value.emailorphonenumber, this.loginForm.value.password).subscribe((response) => {
-      console.log('Token:', response.token);
-    });
+  loginFormSubmit() {
+    this.loginService.login(this.loginForm.value).subscribe((result) => {
+      this.loginData = result
+      if (result) {
+        localStorage.setItem('currentUser', JSON.stringify({ token: this.loginData, userName: this.loginData.user }));
+      }
+      const userLocalData = localStorage.getItem('currentUser');
+      if (userLocalData) {
+        const currentUser = JSON.parse(userLocalData);
+        if (currentUser.token) {
+          this.toaster.success('Login Successful');
+          this.router.navigateByUrl('/header');
+        }
+      }
+    }, err => {
+      console.log(err);
+      
+      this.toaster.error(err.error.message);
+    })
   }
 
 }

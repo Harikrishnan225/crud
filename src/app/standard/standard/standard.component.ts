@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { StandardService } from 'src/app/services/standard/standard.service';
 import { ConfirmationDialogComponent } from 'src/app/compnents/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-standard',
@@ -12,7 +13,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   imports: [CommonModule, ReactiveFormsModule, RouterLink, MatDialogModule],
   templateUrl: './standard.component.html',
   styleUrls: ['./standard.component.scss'],
-  providers: [StandardService]
+  providers: [StandardService, ToasterService]
 })
 export class StandardComponent implements OnInit {
   standardId: any;
@@ -22,7 +23,8 @@ export class StandardComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
-    private standardService: StandardService
+    private standardService: StandardService,
+    private toaster: ToasterService
   ) { }
   ngOnInit(): void {
     this.getStandardData();
@@ -34,10 +36,9 @@ export class StandardComponent implements OnInit {
 
   getStandardData() {
     this.standardService.getStandard().subscribe(result => {
-      console.log(result);
       this.standardDetails = result;
     }, err => {
-      console.log(err);
+      this.toaster.error(err);
     })
   }
 
@@ -51,10 +52,10 @@ export class StandardComponent implements OnInit {
       if (result) {
         this.standardService.deleteStandard(standardId).subscribe(
           () => {
-            console.log('Standard Deleted Successfully');
+            this.toaster.success('Standard Deleted Successfully');
             this.ngOnInit();
           }, error => {
-            console.log(error);
+            this.toaster.error(error);
           }
         )
       }

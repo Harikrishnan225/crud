@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-teacheredit',
@@ -11,7 +12,7 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
     ReactiveFormsModule],
   templateUrl: './teacheredit.component.html',
   styleUrls: ['./teacheredit.component.scss'],
-  providers: [TeachersService]
+  providers: [TeachersService, ToasterService]
 })
 export class TeachereditComponent {
   teachersDetailsUpdatedForm!: FormGroup;
@@ -23,7 +24,8 @@ export class TeachereditComponent {
   constructor(private fb: FormBuilder,
     private teachersService: TeachersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit() {
@@ -37,9 +39,8 @@ export class TeachereditComponent {
     });
     this.activatedRoute.params.subscribe(teacherDetailsId => {
       this.teachersId = teacherDetailsId['id'];
-      console.log(this.teachersId);
     }, err => {
-      console.log('Cant able to fetch teachersId' + err);
+     this.toaster.error('Cant able to fetch teachersId' + err);
     });
 
     this.getteachersData();
@@ -68,11 +69,11 @@ export class TeachereditComponent {
       const teachersId = this.selectedTeachers._id;
       this.teachersService.updateTeachersDataId(teachersId, updates).subscribe(
         () => {
-          console.log('Teacher updated successfully');
+          this.toaster.success('Teacher updated successfully');
           this.router.navigateByUrl('/teachers');
         },
         error => {
-          console.error('Error updating teachers:', error);
+          this.toaster.error('Error updating teachers:' + error);
         }
       );
     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StandardService } from 'src/app/services/standard/standard.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-standardadd',
@@ -10,7 +11,7 @@ import { StandardService } from 'src/app/services/standard/standard.service';
     ReactiveFormsModule],
   templateUrl: './standardadd.component.html',
   styleUrls: ['./standardadd.component.scss'],
-  providers: [StandardService]
+  providers: [StandardService, ToasterService]
 })
 export class StandardaddComponent implements OnInit {
 
@@ -18,7 +19,8 @@ export class StandardaddComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private standardService: StandardService,
-    private location: Location
+    private location: Location,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -28,14 +30,13 @@ export class StandardaddComponent implements OnInit {
   }
   standardFormSubmit() {
     if (this.standardAddingForm.valid) {
-      this.standardService.addStandard(this.standardAddingForm.value).subscribe({
-        next: (value) => {
-          console.log('Standard added Successfully');
+      this.standardService.addStandard(this.standardAddingForm.value).subscribe(
+        () => {
+          this.toaster.success('Standard added Successfully');
           this.location.back();
-        }, error(err) {
-          console.log('Cant able to add standard' + err);
-        }
-      })
+        }, (err) => {
+          this.toaster.error('Cant able to add standard' + err);
+        })
     }
   }
 }

@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/compnents/confirmation-dialog/confirmation-dialog.component';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-teacherview',
@@ -12,7 +13,7 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
   ],
   templateUrl: './teacherview.component.html',
   styleUrls: ['./teacherview.component.scss'],
-  providers: [TeachersService]
+  providers: [TeachersService, ToasterService]
 })
 export class TeacherviewComponent implements OnInit {
   teachersData: any;
@@ -20,8 +21,8 @@ export class TeacherviewComponent implements OnInit {
   constructor(
     private teachersService: TeachersService,
     private router: Router,
-    private dialog: MatDialog
-
+    private dialog: MatDialog,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class TeacherviewComponent implements OnInit {
         this.teachersData = teachers;
         console.log(teachers);
       }, error => {
-        console.log('Cannot fetch data' + error);
+        this.toaster.error('Cannot fetch data' + error);
       }
     )
   }
@@ -52,10 +53,10 @@ export class TeacherviewComponent implements OnInit {
       if (result) {
         this.teachersService.deleteTeachersData(teachersId).subscribe(
           () => {
-            console.log('Teacher Record Deleted Successfully');
+            this.toaster.success('Teacher Record Deleted Successfully');
             this.ngOnInit();
           }, error => {
-            console.log(error);
+            this.toaster.error(error);
           }
         )
       }

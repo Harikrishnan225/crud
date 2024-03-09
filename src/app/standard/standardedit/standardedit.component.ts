@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StandardService } from 'src/app/services/standard/standard.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-standardedit',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './standardedit.component.html',
-  providers: [StandardService]
+  providers: [StandardService, ToasterService]
 })
 export class StandardeditComponent implements OnInit {
   standardDetailsUpdatedForm!: FormGroup;
@@ -20,7 +21,8 @@ export class StandardeditComponent implements OnInit {
     private fb: FormBuilder,
     private standardService: StandardService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class StandardeditComponent implements OnInit {
     this.activatedRoute.params.subscribe(standardId => {
       this.standardId = standardId['id'];
     }, err => {
-      console.log(err);
+      this.toaster.error(err);
     });
 
     this.getStandardData();
@@ -55,10 +57,10 @@ export class StandardeditComponent implements OnInit {
       const standardId = this.standardData._id;
       this.standardService.updatedStandard(standardId, standardUpdate).subscribe(
         () => {
-          console.log('Standard Added Successfully');
+          this.toaster.success('Standard Added Successfully');
           this.router.navigateByUrl('/standard');
         }, error => {
-          console.log(error);
+          this.toaster.error(error);
         }
       )
     }

@@ -5,6 +5,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StudentDetailsService } from '../../services/students/student-details.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-view',
@@ -15,7 +16,7 @@ import { StudentDetailsService } from '../../services/students/student-details.s
   ],
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
-  providers: [StudentDetailsService]
+  providers: [StudentDetailsService, ToasterService]
 })
 export class ViewComponent {
   studentsData: any;
@@ -24,7 +25,8 @@ export class ViewComponent {
   constructor(
     private studentDetailsService: StudentDetailsService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toaster: ToasterService
   ) { }
 
 
@@ -57,10 +59,10 @@ export class ViewComponent {
       if (result) {
         this.studentDetailsService.deleteStudentDetails(id).subscribe(
           () => {
-            console.log('Student deleted successfully');
+            this.toaster.success('Student deleted successfully');
             this.ngOnInit();
           }, error => {
-            console.error(error);
+            this.toaster.error(error);
           });
       }
     });
