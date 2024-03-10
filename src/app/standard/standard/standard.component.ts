@@ -55,7 +55,9 @@ export class StandardComponent implements OnInit {
             this.toaster.success('Standard Deleted Successfully');
             this.ngOnInit();
           }, error => {
-            this.toaster.error(error);
+            console.log(error);
+            
+            this.toaster.error(error.error);
           }
         )
       }

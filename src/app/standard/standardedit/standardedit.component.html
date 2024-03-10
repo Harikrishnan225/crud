@@ -5,7 +5,7 @@
                 <h2 class="card-title text-center">Update teacher Details</h2>
             </div>
             <div class="card-body">
-                <form [formGroup]="standardDetailsUpdatedForm">
+                <form [formGroup]="standardDetailsUpdatedForm" (ngSubmit)="updatestandardDetails()">
 
                     <div class="mb-3 row">
                         <label for="standardId" class="col-sm-3 col-form-label">standard Id:</label>
@@ -27,7 +27,7 @@
 
                     <div class="mb-3 row">
                         <div class="col-sm-8 offset-sm-3 text-center">
-                            <button type="submit" class="btn btn-primary" (click)="updatestandardDetails()"
+                            <button type="submit" class="btn btn-primary" 
                                 [disabled]="standardDetailsUpdatedForm.invalid">Submit</button>
                         </div>
                     </div>

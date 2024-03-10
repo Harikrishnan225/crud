@@ -5,7 +5,7 @@
                 <h2 class="card-title text-center">Student Details</h2>
             </div>
             <div class="card-body">
-                <form [formGroup]="studentAddingForm">
+                <form [formGroup]="studentAddingForm" (ngSubmit)="userCreatingSubmit()">
 
                     <div class="mb-3 row">
                         <label for="firstName" class="col-sm-3 col-form-label">First Name:</label>
@@ -71,7 +71,7 @@
 
                     <div class="mb-3 row">
                         <div class="col-sm-8 offset-sm-3 text-center">
-                            <button type="submit" class="btn btn-primary" (click)="userCreatingSubmit()"
+                            <button type="submit" class="btn btn-primary"
                                 [disabled]="studentAddingForm.invalid">Submit</button>
                         </div>
                     </div>

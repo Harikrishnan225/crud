@@ -6,7 +6,7 @@
                     Login
                 </div>
                 <div class="card-body">
-                    <form [formGroup]="loginForm">
+                    <form [formGroup]="loginForm" (ngSubmit)="loginFormSubmit()">
                         <div class="mb-3">
                             <input type="email" class="form-control my-4 py-3" id="userEmail"
                                 placeholder="Email address" formControlName="email">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="loginFormSubmit()">Login</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
                         </div>
                     </form>
                 </div>
