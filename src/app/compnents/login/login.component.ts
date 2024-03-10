@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
     private toaster: ToasterService,
     private loginService: LoginService,
     private tokenService: TokenService
-  ) { }
+  ) {
+   
+  }
 
 
   ngOnInit(): void {
@@ -44,7 +46,6 @@ export class LoginComponent implements OnInit {
       this.loginData = result
       if (result) {
         this.tokenService.saveToken(this.loginData.token);
-        this.loginService.isUserLoggin = true
       }
       const userToken = this.tokenService.getToken();
       if (userToken) {

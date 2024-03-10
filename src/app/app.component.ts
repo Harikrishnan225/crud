@@ -26,12 +26,12 @@ export class AppComponent implements OnInit {
   userLoggin = inject(LoginService);
 
   ngOnInit(): void {
-    const userToken = this.userLoggin.isLogin()
-    if (userToken) {
-      this.isUserLoggin = true
-    } else {
-      this.isUserLoggin = false
-    } 
+    // const userToken = this.userLoggin.isLogin()
+    // if (userToken) {
+    //   this.isUserLoggin = true
+    // } else {
+    //   this.isUserLoggin = false
+    // } 
   }
 
 }

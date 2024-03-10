@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenService } from '../token/token.service';
 
@@ -8,11 +8,16 @@ import { TokenService } from '../token/token.service';
 })
 export class LoginService {
   isUserLoggin!: boolean;
+  private http = inject(HttpClient);
 
   constructor(
-    private http: HttpClient,
     private tokenService: TokenService
-  ) { }
+  ) { 
+    const authToken = this.tokenService.getToken();
+    if (authToken) {
+      this.isUserLoggin = true
+    }
+  }
   private apiUrl = 'http://localhost:3000/login';
 
   login(loginDetails: any): Observable<any> {
