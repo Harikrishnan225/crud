@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { ToasterComponent } from '../toaster/toaster.component';
+import { Router, RouterLink } from '@angular/router';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   providers: [ToasterService]
