@@ -10,8 +10,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
   imports: [CommonModule,
     ReactiveFormsModule],
   templateUrl: './teacheradd.component.html',
-  styleUrls: ['./teacheradd.component.scss'],
-  providers: [TeachersService, ToasterService]
+  styleUrls: ['./teacheradd.component.scss']
 })
 export class TeacheraddComponent implements OnInit {
   teacherAddingForm!: FormGroup;

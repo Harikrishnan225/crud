@@ -8,8 +8,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  providers: [ToasterService]
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
 

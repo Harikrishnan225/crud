@@ -13,8 +13,8 @@ export class CommonInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // const token = localStorage.getItem('currentUser')
-    const token = 'API123';
-    return next.handle(request.clone({ setHeaders: { token } }));
+    const userToken = localStorage.getItem('currentUser')
+    
+    return next.handle(request.clone({  headers: request.headers.set('Authorization', `Bearer ${userToken}`), }));
   }
 }

@@ -12,8 +12,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink, MatDialogModule],
   templateUrl: './standard.component.html',
-  styleUrls: ['./standard.component.scss'],
-  providers: [StandardService, ToasterService]
+  styleUrls: ['./standard.component.scss']
 })
 export class StandardComponent implements OnInit {
   standardId: any;

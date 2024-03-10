@@ -10,8 +10,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss'],
-  providers: [StudentDetailsService, ToasterService]
+  styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
   studentDetailsUpdatedForm!: FormGroup;

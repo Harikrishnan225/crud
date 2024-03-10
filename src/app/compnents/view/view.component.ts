@@ -15,8 +15,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
     RouterLink, MatDialogModule, MatSnackBarModule
   ],
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss'],
-  providers: [StudentDetailsService, ToasterService]
+  styleUrls: ['./view.component.scss']
 })
 export class ViewComponent {
   studentsData: any;

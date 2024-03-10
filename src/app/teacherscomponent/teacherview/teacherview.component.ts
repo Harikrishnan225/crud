@@ -12,8 +12,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
   imports: [CommonModule, RouterLink, MatDialogModule
   ],
   templateUrl: './teacherview.component.html',
-  styleUrls: ['./teacherview.component.scss'],
-  providers: [TeachersService, ToasterService]
+  styleUrls: ['./teacherview.component.scss']
 })
 export class TeacherviewComponent implements OnInit {
   teachersData: any;

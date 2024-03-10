@@ -9,8 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, HttpClientModule],
   templateUrl: './viewdetails.component.html',
-  styleUrls: ['./viewdetails.component.scss'],
-  providers: [StandardService]
+  styleUrls: ['./viewdetails.component.scss']
 })
 export class ViewdetailsComponent implements OnInit {
   standard: any;

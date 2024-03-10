@@ -11,8 +11,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
   imports: [CommonModule,
     ReactiveFormsModule],
   templateUrl: './teacheredit.component.html',
-  styleUrls: ['./teacheredit.component.scss'],
-  providers: [TeachersService, ToasterService]
+  styleUrls: ['./teacheredit.component.scss']
 })
 export class TeachereditComponent {
   teachersDetailsUpdatedForm!: FormGroup;

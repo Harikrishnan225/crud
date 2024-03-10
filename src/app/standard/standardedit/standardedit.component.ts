@@ -9,8 +9,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
   selector: 'app-standardedit',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './standardedit.component.html',
-  providers: [StandardService, ToasterService]
+  templateUrl: './standardedit.component.html'
 })
 export class StandardeditComponent implements OnInit {
   standardDetailsUpdatedForm!: FormGroup;

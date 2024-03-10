@@ -13,8 +13,7 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
     ReactiveFormsModule
   ],
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
-  providers: [StudentDetailsService, ToasterService]
+  styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
   studentAddingForm!: FormGroup;

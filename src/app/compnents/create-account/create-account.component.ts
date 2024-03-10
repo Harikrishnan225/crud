@@ -12,8 +12,7 @@ import { AuthService } from '../../services/auth/auth.service';
     ReactiveFormsModule
   ],
   templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.scss'],
-  providers: [AuthService]
+  styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent implements OnInit {
   signupForm!: FormGroup

@@ -3,7 +3,6 @@ import { LoginComponent } from './compnents/login/login.component';
 import { ToasterComponent } from './compnents/toaster/toaster.component';
 import { StandardComponent } from './standard/standard/standard.component';
 import { ViewdetailsComponent } from './standard/viewdetails/viewdetails.component';
-import { HeaderComponent } from './compnents/header/header.component';
 import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
@@ -64,11 +63,6 @@ export const routes: Routes = [
     {
         path: 'toaster',
         component: ToasterComponent
-    },
-    {
-        path: 'header',
-        canActivate: [authGuard],
-        component: HeaderComponent
     },
     {
         path: '',

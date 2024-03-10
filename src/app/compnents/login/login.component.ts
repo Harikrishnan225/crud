@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
-import { StudentDetailsService } from '../../services/students/student-details.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-login',
@@ -14,22 +14,20 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
     ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  providers: [
-    ToasterService,
-    StudentDetailsService,
-    LoginService
-  ]
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  loginData: any
+  loginData: any;
+  password: any;
+  show: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private toaster: ToasterService,
     private loginService: LoginService,
+    private tokenService: TokenService
   ) { }
 
 
@@ -38,27 +36,35 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+    this.password = 'password';
   }
 
   loginFormSubmit() {
     this.loginService.login(this.loginForm.value).subscribe((result) => {
       this.loginData = result
       if (result) {
-        localStorage.setItem('currentUser', JSON.stringify({ token: this.loginData, userName: this.loginData.user }));
+        this.tokenService.saveToken(this.loginData.token);
+        this.loginService.isUserLoggin = true
       }
-      const userLocalData = localStorage.getItem('currentUser');
-      if (userLocalData) {
-        const currentUser = JSON.parse(userLocalData);
-        if (currentUser.token) {
-          this.toaster.success('Login Successful');
-          this.router.navigateByUrl('/header');
-        }
+      const userToken = this.tokenService.getToken();
+      if (userToken) {
+        this.toaster.success('Login Successful');
+        this.router.navigateByUrl('/teachers');
       }
     }, err => {
       console.log(err);
-      
       this.toaster.error(err.error.message);
     })
+  }
+
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
+    }
   }
 
 }

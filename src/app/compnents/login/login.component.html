@@ -16,8 +16,12 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control my-4 py-3" id="inputPassword"
+                            <input [type]="password" class="form-control my-4 py-3 position-relative" id="inputPassword"
                                 placeholder="Password" formControlName="password">
+                                <button (click)="onClick()" class="position-absolute eyebutton">
+                                    <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="!show"></i>
+                                    <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="show"></i>
+                                  </button>
                                 <div
                                 *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
                                <p class="text-danger">Password is required.</p>
