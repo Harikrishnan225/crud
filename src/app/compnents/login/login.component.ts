@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
 import { TokenService } from 'src/app/services/token/token.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +29,7 @@ export class LoginComponent implements OnInit {
     private toaster: ToasterService,
     private loginService: LoginService,
     private tokenService: TokenService
-  ) {
-   
-  }
+  ) { }
 
 
   ngOnInit(): void {
@@ -46,6 +45,7 @@ export class LoginComponent implements OnInit {
       this.loginData = result
       if (result) {
         this.tokenService.saveToken(this.loginData.token);
+        this.loginService.subject.next(1);
       }
       const userToken = this.tokenService.getToken();
       if (userToken) {

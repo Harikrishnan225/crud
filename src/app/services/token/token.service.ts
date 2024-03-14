@@ -8,12 +8,12 @@ export class TokenService {
   constructor() { }
 
   saveToken(loginToken: any) {
-    localStorage.setItem('currentUser', JSON.stringify({ token: loginToken }));
+    const token = loginToken;
+    localStorage.setItem('currentUser', token);
   }
 
   getToken() {
     const token = localStorage.getItem('currentUser');
-    console.log(token);
     return token
   }
 

@@ -1,36 +1,49 @@
 <div class="container">
-    <div class="row">
-        <div class="text-end mt-4">
-            <button class="btn btn-primary" (click)="addStudent()"><span>&plus;&nbsp;</span>Add</button>
-        </div>
+    <div *ngIf="noStudentData">
+        <app-emptyscreen name="student" [msg]="student">
+            <app-button [btnName]="btntext" (click)="addStudent()"></app-button>
+        </app-emptyscreen>
+        <!-- <div class="row">
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" (click)="addStudent()"><span>&plus;&nbsp;</span>Add</button>
+            </div>
+        </div> -->
     </div>
-    <div class="row">
-        <div class="table-responsive">
-            <table class="table table-striped table-hover text-center">
-                <thead>
-                    <tr>
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>Age</th>
-                        <th>Email</th>
-                        <th>Standard</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let students of studentsData">
-                        <td>{{students.firstName}}</td>
-                        <td>{{students.lastName}}</td>
-                        <td>{{students.age}}</td>
-                        <td>{{students.email}}</td>
-                        <td>{{students.standard}}</td>
-                        <td>
-                            <a class="btn btn-warning btn-sm m-1" [routerLink]="['/students/edit', students._id]">Edit</a>
-                            <a class="btn btn-danger btn-sm" (click)="deleteItem(students._id)">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div *ngIf="!noStudentData">
+        <div class="row">
+            <div class="text-end mt-4">
+                <app-button [btnName]="btntext" (click)="addStudent()"></app-button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Standard</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let students of studentsData">
+                            <td>{{students.firstName}}</td>
+                            <td>{{students.lastName}}</td>
+                            <td>{{students.age}}</td>
+                            <td>{{students.email}}</td>
+                            <td>{{students.standard}}</td>
+                            <td>
+                                <a class="btn btn-warning btn-sm m-1"
+                                    [routerLink]="['/students/edit', students._id]">Edit</a>
+                                <a class="btn btn-danger btn-sm" (click)="deleteItem(students._id)">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

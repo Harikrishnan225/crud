@@ -6,13 +6,19 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StudentDetailsService } from '../../services/students/student-details.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
+import { EmptyscreenComponent } from 'src/app/emptyscreen/emptyscreen.component';
+import { ButtonComponent } from 'src/app/button/button.component';
 
 @Component({
   selector: 'app-view',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink, MatDialogModule, MatSnackBarModule
+    RouterLink,
+    MatDialogModule,
+    MatSnackBarModule,
+    EmptyscreenComponent,
+    ButtonComponent
   ],
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss']
@@ -20,6 +26,10 @@ import { ToasterService } from 'src/app/services/toaster/toaster.service';
 export class ViewComponent {
   studentsData: any;
   studentDeleteData: any;
+  studentmsg: any;
+  student = "Student Component";
+  noStudentData!: boolean;
+  btntext = 'Add Student';
 
   constructor(
     private studentDetailsService: StudentDetailsService,
@@ -36,7 +46,11 @@ export class ViewComponent {
   getStudentsData(): void {
     this.studentDetailsService.getStudentsDetails().subscribe(
       students => {
-        this.studentsData = students;
+        if (Object.keys(students).length == 0) {
+          this.noStudentData = true
+        } else {
+          this.studentsData = students;
+        }
       },
       error => {
         console.error(error);

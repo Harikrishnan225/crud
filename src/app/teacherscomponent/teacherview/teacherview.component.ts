@@ -5,17 +5,27 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/compnents/confirmation-dialog/confirmation-dialog.component';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
+import { EmptyscreenComponent } from 'src/app/emptyscreen/emptyscreen.component';
+import { ButtonComponent } from 'src/app/button/button.component';
 
 @Component({
   selector: 'app-teacherview',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatDialogModule
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatDialogModule,
+    EmptyscreenComponent,
+    ButtonComponent
   ],
   templateUrl: './teacherview.component.html',
   styleUrls: ['./teacherview.component.scss']
 })
 export class TeacherviewComponent implements OnInit {
   teachersData: any;
+  noTeachersData!: boolean;
+  teacheres = "Teachers Component";
+  teacherBtnName = "Add Teacher";
 
   constructor(
     private teachersService: TeachersService,
@@ -31,12 +41,14 @@ export class TeacherviewComponent implements OnInit {
   getTeachersDetails(): void {
     this.teachersService.getTeachersData().subscribe(
       teachers => {
-        this.teachersData = teachers;
-        console.log(teachers);
+        if (Object.keys(teachers).length === 0) {
+          this.noTeachersData = true
+        } else {
+          this.teachersData = teachers;
+        }
       }, error => {
-        this.toaster.error('Cannot fetch data' + error);
-      }
-    )
+        this.toaster.error('Cannot fetch data ' + error.name);
+      });
   }
   addTeachers() {
     this.router.navigateByUrl('/teachers/add');

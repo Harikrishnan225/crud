@@ -5,6 +5,7 @@ import { HeaderComponent } from './compnents/header/header.component';
 import { FooterComponent } from './compnents/footer/footer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginService } from './services/login/login.service';
+import { TokenService } from './services/token/token.service';
 
 @Component({
   selector: 'app-root',
@@ -22,16 +23,15 @@ import { LoginService } from './services/login/login.service';
 export class AppComponent implements OnInit {
   title = 'crud';
   isUserLoggin!: boolean;
-
-  userLoggin = inject(LoginService);
+  loginService = inject(LoginService);
+  tokenService = inject(TokenService);
 
   ngOnInit(): void {
-    // const userToken = this.userLoggin.isLogin()
-    // if (userToken) {
-    //   this.isUserLoggin = true
-    // } else {
-    //   this.isUserLoggin = false
-    // } 
+    this.isUserLoggin = this.loginService.isLogin();
+    console.log(this.isUserLoggin);
+    this.loginService.subject.subscribe(() => {
+      this.isUserLoggin = this.loginService.isLogin();
+      console.log(this.isUserLoggin);
+    })
   }
-
 }

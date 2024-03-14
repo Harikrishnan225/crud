@@ -4,6 +4,7 @@ import { ToasterComponent } from './compnents/toaster/toaster.component';
 import { StandardComponent } from './standard/standard/standard.component';
 import { ViewdetailsComponent } from './standard/viewdetails/viewdetails.component';
 import { authGuard } from './auth.guard';
+import { EmptyscreenComponent } from './emptyscreen/emptyscreen.component';
 
 export const routes: Routes = [
     {
@@ -27,7 +28,6 @@ export const routes: Routes = [
     },
     {
         path: 'teachers/add',
-        canActivate: [authGuard],
         loadComponent: () => import('./teacherscomponent/teacheradd/teacheradd.component').then(m => m.TeacheraddComponent)
     },
     {
@@ -39,6 +39,9 @@ export const routes: Routes = [
         path: 'teachers/edit/:id',
         canActivate: [authGuard],
         loadComponent: () => import('./teacherscomponent/teacheredit/teacheredit.component').then(m => m.TeachereditComponent)
+    }, {
+        path: 'empty',
+        component: EmptyscreenComponent
     },
     {
         path: 'standard',
