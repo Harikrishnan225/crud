@@ -5,7 +5,7 @@
                 <h2 class="card-title text-center">Update Student Details</h2>
             </div>
             <div class="card-body">
-                <form [formGroup]="studentDetailsUpdatedForm">
+                <form [formGroup]="studentDetailsUpdatedForm" (ngSubmit)="updateStudentDetails()">
 
                     <div class="mb-3 row">
                         <label for="studentId" class="col-sm-3 col-form-label">Student Id:</label>
@@ -66,7 +66,7 @@
                     <div class="mb-3 row">
                         <div class="col-sm-8 offset-sm-3 text-center">
                             <button type="submit" class="btn btn-primary" 
-                                [disabled]="studentDetailsUpdatedForm.invalid" (ngSubmit)="updateStudentDetails()">Submit</button>
+                                [disabled]="studentDetailsUpdatedForm.invalid">Submit</button>
                         </div>
                     </div>
 
