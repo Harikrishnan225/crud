@@ -6,29 +6,29 @@
                     Login
                 </div>
                 <div class="card-body">
-                    <form [formGroup]="loginForm">
+                    <form [formGroup]="loginForm" (ngSubmit)="loginFormSubmit()">
                         <div class="mb-3">
                             <input type="email" class="form-control my-4 py-3" id="userEmail"
                                 placeholder="Email address" formControlName="email">
-                                <div
+                            <div
                                 *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
-                               <p class="text-danger">Email is required.</p>
+                                <p class="text-danger">Email is required.</p>
                             </div>
                         </div>
                         <div class="mb-3">
                             <input [type]="password" class="form-control my-4 py-3 position-relative" id="inputPassword"
                                 placeholder="Password" formControlName="password">
-                                <button (click)="passwordShowHide()" class="position-absolute eyebutton">
-                                    <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="!show"></i>
-                                    <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="show"></i>
-                                  </button>
-                                <div
+                            <button (click)="onClick()" class="position-absolute eyebutton">
+                                <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="!show"></i>
+                                <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="show"></i>
+                            </button>
+                            <div
                                 *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
-                               <p class="text-danger">Password is required.</p>
+                                <p class="text-danger">Password is required.</p>
                             </div>
                         </div>
                         <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (ngSubmit)="loginFormSubmit()">Login</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
                         </div>
                     </form>
                 </div>

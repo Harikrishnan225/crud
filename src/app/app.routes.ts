@@ -5,6 +5,7 @@ import { StandardComponent } from './standard/standard/standard.component';
 import { ViewdetailsComponent } from './standard/viewdetails/viewdetails.component';
 import { authGuard } from './auth.guard';
 import { EmptyscreenComponent } from './emptyscreen/emptyscreen.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,10 @@ export const routes: Routes = [
         path: 'standard',
         canActivate: [authGuard],
         component: StandardComponent
+    },
+    {
+        path: 'signup',
+        component: SignupComponent
     },
     {
         path: 'standard/add',

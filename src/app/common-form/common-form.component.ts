@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login/login.service';
-import { ToasterService } from 'src/app/services/toaster/toaster.service';
-import { TokenService } from 'src/app/services/token/token.service';
-import { Subject } from 'rxjs';
+import { ToasterService } from '../services/toaster/toaster.service';
+import { LoginService } from '../services/login/login.service';
+import { TokenService } from '../services/token/token.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-common-form',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './common-form.component.html',
+  styleUrls: ['./common-form.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class CommonFormComponent {
   loginForm!: FormGroup;
   loginData: any;
   password: any;
@@ -58,7 +54,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  passwordShowHide() {
+  onClick() {
     if (this.password === 'password') {
       this.password = 'text';
       this.show = true;
@@ -67,5 +63,4 @@ export class LoginComponent implements OnInit {
       this.show = false;
     }
   }
-
 }
