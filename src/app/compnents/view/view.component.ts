@@ -44,7 +44,7 @@ export class ViewComponent {
   }
 
   getStudentsData(): void {
-    this.studentDetailsService.getStudentsDetails().subscribe(
+    this.studentDetailsService.getStudentsData().subscribe(
       students => {
         if (Object.keys(students).length == 0) {
           this.noStudentData = true
@@ -70,7 +70,7 @@ export class ViewComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.studentDetailsService.deleteStudentDetails(id).subscribe(
+        this.studentDetailsService.deleteStudentData(id).subscribe(
           () => {
             this.toaster.success('Student deleted successfully');
             this.ngOnInit();

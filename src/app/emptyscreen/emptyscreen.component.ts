@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 const urlMap = {
   student: "/assets/studentempty.avif",
   teacher: "/assets/teacherempty.avif",
+  studentDetails: "/assets/nostudentdetails.webp",
   default: "/assets/default.avif"
 }
 
@@ -17,6 +18,6 @@ const urlMap = {
 export class EmptyscreenComponent {
   @Input() msg!: string;
   @Input() name: keyof typeof urlMap = 'default';
-  
+
   images = urlMap;
 }

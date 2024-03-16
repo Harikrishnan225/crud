@@ -53,7 +53,7 @@ export class AddComponent {
   userCreatingSubmit(): void {
     if (this.studentAddingForm.valid) {
       console.log(this.studentAddingForm.value);
-      this.studentService.addStudentDetails(this.studentAddingForm.value).subscribe(
+      this.studentService.addStudentData(this.studentAddingForm.value).subscribe(
         () => {
           this.toaster.success('Student added successfully');
           this._location.back();

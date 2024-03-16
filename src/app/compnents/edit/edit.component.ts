@@ -45,7 +45,7 @@ export class EditComponent {
   }
 
   getStudentData() {
-    this.studentServiceDetails.getStudentDetailsById(this.studentId).subscribe(studentData => {
+    this.studentServiceDetails.getStudentDataById(this.studentId).subscribe(studentData => {
       this.selectedStudent = studentData;
       if (this.selectedStudent) {
         this.studentDetailsUpdatedForm.patchValue({
@@ -65,7 +65,7 @@ export class EditComponent {
     if (this.studentDetailsUpdatedForm.valid) {
       const updates = this.studentDetailsUpdatedForm.value;
       const studentId = this.selectedStudent._id;
-      this.studentServiceDetails.updateStudentDetailsById(studentId, updates).subscribe(
+      this.studentServiceDetails.updateStudentDataById(studentId, updates).subscribe(
         () => {
           this.toaster.success('Student updated successfully');
           this.router.navigateByUrl('/students');

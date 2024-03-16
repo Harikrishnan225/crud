@@ -1,0 +1,45 @@
+<div class="container">
+    <div *ngIf="">
+        <app-emptyscreen name="studentDetails" [msg]="student">
+            <app-button [btnName]="btntext" (click)="addStudentDetails()"></app-button>
+        </app-emptyscreen>
+    </div>
+    <div>
+        <div class="row">
+            <div class="text-end mt-4">
+                <app-button [btnName]="btntext" (click)="addStudentDetails()"></app-button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let students of studentDetails">
+                            <td>{{students.studentName}}</td>
+                            <td>
+                                <ul>
+                                    <li class="mb-4" *ngFor="let address of students.studentAddress">
+                                        Address: {{address.addressField}} <br>
+                                        PinCode: {{address.pinCode}} <br>
+                                        PhoneNumber: {{address.phoneNumber}}
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-sm m-1" [routerLink]="['/studentDetails/edit',]">Edit</a>
+                                <a class="btn btn-danger btn-sm" (click)="deleteItem()">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,19 +1,19 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-md-5">
-            <form [formGroup]="studentDetailsForm" (ngSubmit)="addstudentDetails()">
+            <form [formGroup]="studentDetailsEditForm" (ngSubmit)="editStudentDetails()">
                 <div class="mb-3">
                     <input type="text" class="form-control my-4 py-3" placeholder="Student Name"
                         formControlName="studentName">
                     <div
-                        *ngIf="studentDetailsForm.get('studentName')?.hasError('required') && studentDetailsForm.get('studentName')?.touched">
+                        *ngIf="studentDetailsEditForm.get('studentName')?.hasError('required') && studentDetailsEditForm.get('studentName')?.touched">
                         <p class="text-danger">Name is required.</p>
                     </div>
                 </div>
                 <div class="mb-3">
                     <div class="form-group" formArrayName="studentAddress">
-                        <div *ngFor="let student of StudentAddress.controls; let i = index">
-                            <div [formArrayName]="i">
+                        <!-- <div *ngFor="let student of ; let i = index"> -->
+                            <div>
                                 <textarea cols="65" rows="10" formControlName="addressField"></textarea>
                                 <div class="mb-3">
                                     <input type="text" class="form-control my-4 py-3" placeholder="Pincode"
@@ -26,12 +26,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
                 <div>
-                    <button class="btn btn-primary mb-3" type="button" (click)="addStudent()">+ Student Address</button>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="studentDetailsEditForm.invalid">Submit</button>
                 </div>
             </form>
         </div>

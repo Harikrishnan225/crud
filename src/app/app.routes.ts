@@ -5,7 +5,9 @@ import { StandardComponent } from './standard/standard/standard.component';
 import { ViewdetailsComponent } from './standard/viewdetails/viewdetails.component';
 import { authGuard } from './auth.guard';
 import { EmptyscreenComponent } from './emptyscreen/emptyscreen.component';
-import { StudentdetailsComponent } from './studentdetails/studentdetails.component';
+import { StudentdetailsaddComponent } from './studentdetails/studentdetailsadd/studentdetailsadd.component';
+import { StudentdetailseditComponent } from './studentdetails/studentdetailsedit/studentdetailsedit.component';
+import { StudentdetailsviewComponent } from './studentdetails/studentdetailsview/studentdetailsview.component';
 
 export const routes: Routes = [
     {
@@ -27,8 +29,16 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent
     }, {
+        path: 'studentdetails/add',
+        component: StudentdetailsaddComponent
+    },
+    {
+        path: 'studentdetails/edit/:id',
+        component: StudentdetailseditComponent
+    },
+    {
         path: 'studentdetails',
-        component: StudentdetailsComponent
+        component: StudentdetailsviewComponent
     },
     {
         path: 'teachers/add',

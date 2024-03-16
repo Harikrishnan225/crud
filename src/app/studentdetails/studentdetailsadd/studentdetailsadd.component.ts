@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormArray } from '@angular/forms';
-import { StudentDetailsService } from '../services/students/student-details.service';
-import { ToasterService } from '../services/toaster/toaster.service';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { StudentDetailsService } from 'src/app/services/students/student-details.service';
+import { ToasterService } from 'src/app/services/toaster/toaster.service';
 
 @Component({
-  selector: 'app-studentdetails',
+  selector: 'app-studentdetailsadd',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './studentdetails.component.html',
-  styleUrls: ['./studentdetails.component.scss']
+  templateUrl: './studentdetailsadd.component.html',
+  styleUrls: ['./studentdetailsadd.component.scss']
 })
-export class StudentdetailsComponent implements OnInit {
+export class StudentdetailsaddComponent implements OnInit {
   studentDetailsForm!: FormGroup
 
   constructor(
@@ -45,8 +45,8 @@ export class StudentdetailsComponent implements OnInit {
   }
 
   addstudentDetails() {
-    this.studentDetailsService.addStudentDetailss(this.studentDetailsForm.value).subscribe((data) => {
-      console.log(data);      
+    this.studentDetailsService.addStudentDetails(this.studentDetailsForm.value).subscribe((data) => {
+      console.log(data);
       this.toaster.success('Student Details Successfull')
     })
   }
