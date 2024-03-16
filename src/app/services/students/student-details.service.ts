@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class StudentDetailsService {
 
   private apiUrl = 'http://localhost:3000/students';
+  private studentapiUrl = 'http://localhost:3000/studentdetails';
   private standardapiUrl = 'http://localhost:3000/standards';
 
   constructor(private http: HttpClient) { }
@@ -34,5 +35,9 @@ export class StudentDetailsService {
 
   deleteStudentDetails(studentId: String): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${studentId}`);
+  }
+
+  addStudentDetailss(studentDetailsData: any): Observable<any> {
+    return this.http.post<any>(this.studentapiUrl, studentDetailsData)
   }
 }
