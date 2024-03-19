@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentDetailsService } from '../../services/students/student-details.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
+import { StudentDetailsService } from 'src/app/services/students/student-details.service';
 
 @Component({
   selector: 'app-edit',
@@ -35,8 +35,8 @@ export class EditComponent {
       email: ['', [Validators.required, Validators.email]],
       standard: ['', Validators.required]
     });
-    this.activatedRoute.params.subscribe(studentDetailsId => {
-      this.studentId = studentDetailsId['id'];
+    this.activatedRoute.params.subscribe(studentId => {
+      this.studentId = studentId['id'];
     }, err => {
       console.log('Cant able to fetch StudentId' + err);
     });

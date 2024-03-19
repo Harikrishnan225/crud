@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentDetailsService } from 'src/app/services/students/student-details.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
@@ -18,6 +18,7 @@ export class StudentdetailsaddComponent implements OnInit {
     private fb: FormBuilder,
     private studentDetailsService: StudentDetailsService,
     private toaster: ToasterService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +48,8 @@ export class StudentdetailsaddComponent implements OnInit {
   addstudentDetails() {
     this.studentDetailsService.addStudentDetails(this.studentDetailsForm.value).subscribe((data) => {
       console.log(data);
-      this.toaster.success('Student Details Successfull')
+      this.toaster.success('Student Details Successfull');
+      this.location.back();
     })
   }
 

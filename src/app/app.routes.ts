@@ -1,29 +1,29 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './compnents/login/login.component';
 import { ToasterComponent } from './compnents/toaster/toaster.component';
-import { StandardComponent } from './standard/standard/standard.component';
-import { ViewdetailsComponent } from './standard/viewdetails/viewdetails.component';
 import { authGuard } from './auth.guard';
-import { EmptyscreenComponent } from './emptyscreen/emptyscreen.component';
-import { StudentdetailsaddComponent } from './studentdetails/studentdetailsadd/studentdetailsadd.component';
-import { StudentdetailseditComponent } from './studentdetails/studentdetailsedit/studentdetailsedit.component';
-import { StudentdetailsviewComponent } from './studentdetails/studentdetailsview/studentdetailsview.component';
+import { StudentdetailsaddComponent } from './compnents/studentdetails/studentdetailsadd/studentdetailsadd.component';
+import { StudentdetailseditComponent } from './compnents/studentdetails/studentdetailsedit/studentdetailsedit.component';
+import { StudentdetailsviewComponent } from './compnents/studentdetails/studentdetailsview/studentdetailsview.component';
+import { EmptyscreenComponent } from './compnents/emptyscreen/emptyscreen.component';
+import { StandardComponent } from './compnents/standard/standard/standard.component';
+import { ViewdetailsComponent } from './compnents/standard/viewdetails/viewdetails.component';
 
 export const routes: Routes = [
     {
         path: 'students',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/view/view.component').then(m => m.ViewComponent)
+        loadComponent: () => import('./compnents/student/view/view.component').then(m => m.ViewComponent)
     },
     {
         path: 'students/add',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/add/add.component').then(m => m.AddComponent)
+        loadComponent: () => import('./compnents/student/add/add.component').then(m => m.AddComponent)
     },
     {
         path: 'students/edit/:id',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/edit/edit.component').then(m => m.EditComponent)
+        loadComponent: () => import('./compnents/student/edit/edit.component').then(m => m.EditComponent)
     },
     {
         path: 'login',
@@ -42,17 +42,17 @@ export const routes: Routes = [
     },
     {
         path: 'teachers/add',
-        loadComponent: () => import('./teacherscomponent/teacheradd/teacheradd.component').then(m => m.TeacheraddComponent)
+        loadComponent: () => import('./compnents/teacherscomponent/teacheradd/teacheradd.component').then(m => m.TeacheraddComponent)
     },
     {
         path: 'teachers',
         canActivate: [authGuard],
-        loadComponent: () => import('./teacherscomponent/teacherview/teacherview.component').then(m => m.TeacherviewComponent)
+        loadComponent: () => import('./compnents/teacherscomponent/teacherview/teacherview.component').then(m => m.TeacherviewComponent)
     },
     {
         path: 'teachers/edit/:id',
         canActivate: [authGuard],
-        loadComponent: () => import('./teacherscomponent/teacheredit/teacheredit.component').then(m => m.TeachereditComponent)
+        loadComponent: () => import('./compnents/teacherscomponent/teacheredit/teacheredit.component').then(m => m.TeachereditComponent)
     }, {
         path: 'empty',
         component: EmptyscreenComponent
@@ -65,12 +65,12 @@ export const routes: Routes = [
     {
         path: 'standard/add',
         canActivate: [authGuard],
-        loadComponent: () => import('./standard/standardadd/standardadd.component').then(m => m.StandardaddComponent)
+        loadComponent: () => import('./compnents/standard/standardadd/standardadd.component').then(m => m.StandardaddComponent)
     },
     {
         path: 'standard/edit/:id',
         canActivate: [authGuard],
-        loadComponent: () => import('./standard/standardedit/standardedit.component').then(m => m.StandardeditComponent)
+        loadComponent: () => import('./compnents/standard/standardedit/standardedit.component').then(m => m.StandardeditComponent)
     },
     {
         path: 'standard/viewdetails/:id',

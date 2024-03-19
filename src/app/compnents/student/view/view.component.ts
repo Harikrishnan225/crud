@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { StudentDetailsService } from '../../services/students/student-details.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
-import { EmptyscreenComponent } from 'src/app/emptyscreen/emptyscreen.component';
-import { ButtonComponent } from 'src/app/button/button.component';
+import { ButtonComponent } from '../../button/button.component';
+import { EmptyscreenComponent } from '../../emptyscreen/emptyscreen.component';
+import { StudentDetailsService } from 'src/app/services/students/student-details.service';
+import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-view',

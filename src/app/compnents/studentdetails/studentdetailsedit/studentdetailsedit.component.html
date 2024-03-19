@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5">
+            <form [formGroup]="studentDetailsEditForm" (ngSubmit)="editStudentDetails()">
+                <div class="mb-3">
+                    <input type="text" class="form-control my-4 py-3" placeholder="Student Name"
+                        formControlName="studentName">
+                    <div
+                        *ngIf="studentDetailsEditForm.get('studentName')?.hasError('required') && studentDetailsEditForm.get('studentName')?.touched">
+                        <p class="text-danger">Name is required.</p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group" formArrayName="studentAddress">
+                        <div *ngFor="let student of StudentAddress.controls; let i = index">
+                            <div [formGroupName]="i">
+                                <textarea cols="25" rows="2" formControlName="addressField"></textarea>
+                                <div class="d-flex">
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control my-4 py-3" placeholder="Pincode"
+                                            formControlName="pinCode">
+                                    </div>
+                                    <div class="mb-3 mx-3 position-relative">
+                                        <input type="text" class="form-control my-4 py-3"
+                                            placeholder="Enter Phone Number" formControlName="phoneNumber">
+                                    </div>
+                                    <span>
+                                        <i class="bi bi-x-circle position-absolute" (click)="removeAddress(i)"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="studentDetailsEditForm.invalid">Submit</button>
+                    <button type="button" class="btn btn-primary mx-3" (click)="newAddress()">+ Add Address</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

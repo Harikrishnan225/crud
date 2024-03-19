@@ -45,4 +45,16 @@ export class StudentDetailsService {
     return this.http.get<any>(this.studentapiUrl)
   }
 
+  getStudentDetailsById(studentId: any): Observable<any> {
+    return this.http.get<any>(`${this.studentapiUrl}/${studentId}`)
+  }
+
+  updateDetailsById(studentDetailsId: any, updatedStudentDetails: any): Observable<any> {
+    return this.http.put<any>(`${this.studentapiUrl}/${studentDetailsId}`, updatedStudentDetails)
+  }
+
+  deleteStudentDetailsId(studentDetailsId: any): Observable<any> {
+    return this.http.delete<any>(`${this.studentapiUrl}/${studentDetailsId}`)
+  }
+
 }

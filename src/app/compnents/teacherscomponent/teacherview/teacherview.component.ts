@@ -5,8 +5,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/compnents/confirmation-dialog/confirmation-dialog.component';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
 import { ToasterService } from 'src/app/services/toaster/toaster.service';
-import { EmptyscreenComponent } from 'src/app/emptyscreen/emptyscreen.component';
-import { ButtonComponent } from 'src/app/button/button.component';
+import { EmptyscreenComponent } from '../../emptyscreen/emptyscreen.component';
+import { ButtonComponent } from '../../button/button.component';
 
 @Component({
   selector: 'app-teacherview',

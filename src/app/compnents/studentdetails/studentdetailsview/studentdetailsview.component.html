@@ -1,10 +1,10 @@
 <div class="container">
-    <div *ngIf="">
+    <div *ngIf="noStudentDetails">
         <app-emptyscreen name="studentDetails" [msg]="student">
             <app-button [btnName]="btntext" (click)="addStudentDetails()"></app-button>
         </app-emptyscreen>
     </div>
-    <div>
+    <div *ngIf="!noStudentDetails">
         <div class="row">
             <div class="text-end mt-4">
                 <app-button [btnName]="btntext" (click)="addStudentDetails()"></app-button>
@@ -33,8 +33,8 @@
                                 </ul>
                             </td>
                             <td>
-                                <a class="btn btn-warning btn-sm m-1" [routerLink]="['/studentDetails/edit',]">Edit</a>
-                                <a class="btn btn-danger btn-sm" (click)="deleteItem()">Delete</a>
+                                <a class="btn btn-warning btn-sm m-1" [routerLink]="['/studentdetails/edit',students._id]">Edit</a>
+                                <a class="btn btn-danger btn-sm" (click)="deleteItem(students._id)">Delete</a>
                             </td>
                         </tr>
                     </tbody>

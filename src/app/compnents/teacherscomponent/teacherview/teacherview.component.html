@@ -3,11 +3,6 @@
         <app-emptyscreen name="teacher" [msg]="teacheres">
             <app-button [btnName]="teacherBtnName" (click)="addTeachers()"></app-button>
         </app-emptyscreen>
-        <!-- <div class="row">
-            <div class="text-end mt-4 d-flex justify-content-center">
-                <button class="btn btn-primary" (click)="addTeachers()"><span>&plus;&nbsp;</span>Add</button>
-            </div>
-        </div> -->
     </div>
     <div *ngIf="!noTeachersData">
         <div class="row">

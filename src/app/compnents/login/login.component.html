@@ -18,7 +18,7 @@
                         <div class="mb-3">
                             <input [type]="password" class="form-control my-4 py-3 position-relative" id="inputPassword"
                                 placeholder="Password" formControlName="password">
-                                <button (click)="passwordShowHide()" class="position-absolute eyebutton">
+                                <button type="button" (click)="passwordShowHide()" class="position-absolute eyebutton">
                                     <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="!show"></i>
                                     <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="show"></i>
                                   </button>
