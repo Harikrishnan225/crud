@@ -48,6 +48,8 @@ export class TeachereditComponent {
   getteachersData() {
     this.teachersService.getTeachersDataById(this.teachersId).subscribe(teachersData => {
       this.selectedTeachers = teachersData;
+      console.log(teachersData);
+      
       if (this.selectedTeachers) {
         this.teachersDetailsUpdatedForm.patchValue({
           teachersId: this.selectedTeachers._id,
@@ -55,7 +57,7 @@ export class TeachereditComponent {
           lastName: this.selectedTeachers.lastName,
           age: this.selectedTeachers.age,
           email: this.selectedTeachers.email,
-          standard: this.selectedTeachers._id
+          standard: this.selectedTeachers.standard
         });
       };
     });
@@ -64,9 +66,11 @@ export class TeachereditComponent {
 
   updateteacherDetails(): void {
     if (this.teachersDetailsUpdatedForm.valid) {
-      const updates = this.teachersDetailsUpdatedForm.value;
+      const updatedValue = this.teachersDetailsUpdatedForm.value;
+      console.log(updatedValue);
+      
       const teachersId = this.selectedTeachers._id;
-      this.teachersService.updateTeachersDataId(teachersId, updates).subscribe(
+      this.teachersService.updateTeachersDataId(teachersId, updatedValue).subscribe(
         () => {
           this.toaster.success('Teacher updated successfully');
           this.router.navigateByUrl('/teachers');

@@ -54,7 +54,7 @@ export class EditComponent {
           lastName: this.selectedStudent.lastName,
           age: this.selectedStudent.age,
           email: this.selectedStudent.email,
-          standard: this.selectedStudent._id
+          standard: this.selectedStudent.standard
         });
       };
     });
