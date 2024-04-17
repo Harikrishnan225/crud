@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="text-end mt-4">
+            <button class="btn btn-primary" (click)="addStandard()"><span>&plus;&nbsp;</span>Add</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Standard</th>
+                        <th>Student Count</th>
+                        <th>Teachers Count</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let standard of standardDetails">
+                        <td>{{standard.standard}}</td>
+                        <td>{{standard.students.length}}</td>
+                        <td>{{standard.teachers.length}}</td>
+                        <td>
+                            <a class="btn btn-success btn-sm m-1" [routerLink]="['/standard/view', standard.id]">View Details</a>
+                            <a class="btn btn-warning btn-sm m-1"
+                                [routerLink]="['/standard/edit',standard.id]">Edit</a>
+                            <a class="btn btn-danger btn-sm" (click)="deleteItem(standard.id)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,39 +1,39 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './compnents/login/login.component';
-import { ToasterComponent } from './compnents/toaster/toaster.component';
 import { authGuard } from './auth.guard';
-import { StudentdetailsaddComponent } from './compnents/studentdetails/studentdetailsadd/studentdetailsadd.component';
-import { StudentdetailseditComponent } from './compnents/studentdetails/studentdetailsedit/studentdetailsedit.component';
-import { StudentdetailsviewComponent } from './compnents/studentdetails/studentdetailsview/studentdetailsview.component';
-import { EmptyscreenComponent } from './compnents/emptyscreen/emptyscreen.component';
-import { StandardComponent } from './compnents/standard/standard/standard.component';
-import { ViewdetailsComponent } from './compnents/standard/viewdetails/viewdetails.component';
-import { AddteacherssqlComponent } from './compnents/sql-teachers/addteacherssql/addteacherssql.component';
-import { ViewteacherssqlComponent } from './compnents/sql-teachers/viewteacherssql/viewteacherssql.component';
-import { EditteacherssqlComponent } from './compnents/sql-teachers/editteacherssql/editteacherssql.component';
-import { EditstudentsqlComponent } from './compnents/sql-student/editstudentsql/editstudentsql.component';
-import { AddstudentsqlComponent } from './compnents/sql-student/addstudentsql/addstudentsql.component';
-import { ViewstudentsqlComponent } from './compnents/sql-student/viewstudentsql/viewstudentsql.component';
-import { SeqstandardComponent } from './compnents/seqstandard/seqstandard/seqstandard.component';
-import { SeqaddstandardComponent } from './compnents/seqstandard/seqaddstandard/seqaddstandard.component';
-import { SeqviewstandardComponent } from './compnents/seqstandard/seqviewstandard/seqviewstandard.component';
-import { SeqeditstandardComponent } from './compnents/seqstandard/seqeditstandard/seqeditstandard.component';
+import { StudentdetailsaddComponent } from './compnents/crud/studentdetails/studentdetailsadd/studentdetailsadd.component';
+import { StudentdetailseditComponent } from './compnents/crud/studentdetails/studentdetailsedit/studentdetailsedit.component';
+import { StudentdetailsviewComponent } from './compnents/crud/studentdetails/studentdetailsview/studentdetailsview.component';
+import { EmptyscreenComponent } from './compnents/commoncomponents/emptyscreen/emptyscreen.component';
+import { StandardComponent } from './compnents/crud/standard/standard/standard.component';
+import { ViewdetailsComponent } from './compnents/crud/standard/viewdetails/viewdetails.component';
+import { AddteacherssqlComponent } from './compnents/seqcrud/sql-teachers/addteacherssql/addteacherssql.component';
+import { ViewteacherssqlComponent } from './compnents/seqcrud/sql-teachers/viewteacherssql/viewteacherssql.component';
+import { EditteacherssqlComponent } from './compnents/seqcrud/sql-teachers/editteacherssql/editteacherssql.component';
+import { ToasterComponent } from './compnents/commoncomponents/toaster/toaster.component';
+import { ViewstudentsqlComponent } from './compnents/seqcrud/sql-student/viewstudentsql/viewstudentsql.component';
+import { EditstudentsqlComponent } from './compnents/seqcrud/sql-student/editstudentsql/editstudentsql.component';
+import { AddstudentsqlComponent } from './compnents/seqcrud/sql-student/addstudentsql/addstudentsql.component';
+import { SeqstandardComponent } from './compnents/seqcrud/seqstandard/seqstandard/seqstandard.component';
+import { SeqaddstandardComponent } from './compnents/seqcrud/seqstandard/seqaddstandard/seqaddstandard.component';
+import { SeqviewstandardComponent } from './compnents/seqcrud/seqstandard/seqviewstandard/seqviewstandard.component';
+import { SeqeditstandardComponent } from './compnents/seqcrud/seqstandard/seqeditstandard/seqeditstandard.component';
+import { LoginComponent } from './compnents/commoncomponents/login/login.component';
 
 export const routes: Routes = [
     {
         path: 'students',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/student/view/view.component').then(m => m.ViewComponent)
+        loadComponent: () => import('./compnents/crud/student/view/view.component').then(m => m.ViewComponent)
     },
     {
         path: 'students/add',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/student/add/add.component').then(m => m.AddComponent)
+        loadComponent: () => import('./compnents/crud/student/add/add.component').then(m => m.AddComponent)
     },
     {
         path: 'students/edit/:id',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/student/edit/edit.component').then(m => m.EditComponent)
+        loadComponent: () => import('./compnents/crud/student/edit/edit.component').then(m => m.EditComponent)
     },
     {
         path: 'login',
@@ -52,17 +52,17 @@ export const routes: Routes = [
     },
     {
         path: 'teachers/add',
-        loadComponent: () => import('./compnents/teacherscomponent/teacheradd/teacheradd.component').then(m => m.TeacheraddComponent)
+        loadComponent: () => import('./compnents/crud/teacherscomponent/teacheradd/teacheradd.component').then(m => m.TeacheraddComponent)
     },
     {
         path: 'teachers',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/teacherscomponent/teacherview/teacherview.component').then(m => m.TeacherviewComponent)
+        loadComponent: () => import('./compnents/crud/teacherscomponent/teacherview/teacherview.component').then(m => m.TeacherviewComponent)
     },
     {
         path: 'teachers/edit/:id',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/teacherscomponent/teacheredit/teacheredit.component').then(m => m.TeachereditComponent)
+        loadComponent: () => import('./compnents/crud/teacherscomponent/teacheredit/teacheredit.component').then(m => m.TeachereditComponent)
     }, {
         path: 'empty',
         component: EmptyscreenComponent
@@ -75,12 +75,12 @@ export const routes: Routes = [
     {
         path: 'standard/add',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/standard/standardadd/standardadd.component').then(m => m.StandardaddComponent)
+        loadComponent: () => import('./compnents/crud/standard/standardadd/standardadd.component').then(m => m.StandardaddComponent)
     },
     {
         path: 'standard/edit/:id',
         canActivate: [authGuard],
-        loadComponent: () => import('./compnents/standard/standardedit/standardedit.component').then(m => m.StandardeditComponent)
+        loadComponent: () => import('./compnents/crud/standard/standardedit/standardedit.component').then(m => m.StandardeditComponent)
     },
     {
         path: 'standard/viewdetails/:id',
@@ -88,15 +88,15 @@ export const routes: Routes = [
         component: ViewdetailsComponent
     },
     {
-        path: 'sqlteachers/add',
+        path: 'teachers/add',
         component: AddteacherssqlComponent
     },
     {
-        path: 'sqlteachers/view',
+        path: 'teachers/view',
         component: ViewteacherssqlComponent
     },
     {
-        path: 'sqlteachers/edit/:id',
+        path: 'teachers/edit/:id',
         component: EditteacherssqlComponent
     },
     {
@@ -104,31 +104,31 @@ export const routes: Routes = [
         component: ToasterComponent
     },
     {
-        path: 'studentsql/view',
+        path: 'student/view',
         component: ViewstudentsqlComponent
     },
     {
-        path: 'studentsql/edit/:id',
+        path: 'student/edit/:id',
         component: EditstudentsqlComponent
     },
     {
-        path: 'studentsql/add',
+        path: 'student/add',
         component: AddstudentsqlComponent
     },
     {
-        path: 'seqStandards',
+        path: 'standards',
         component: SeqstandardComponent
     },
     {
-        path: 'seqstandard/add',
+        path: 'standard/add',
         component: SeqaddstandardComponent
     },
     {
-        path: 'seqstandard/view',
+        path: 'standard/view/:id',
         component: SeqviewstandardComponent
     },
     {
-        path: 'seqstandard/edit/:id',
+        path: 'standard/edit/:id',
         component: SeqeditstandardComponent
     },
     {

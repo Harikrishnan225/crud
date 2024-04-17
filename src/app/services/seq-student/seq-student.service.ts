@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class SeqStudentService {
 
-  private apiUrl = 'http://localhost:3000/studentsseq';
-  private standardapiUrl = 'http://localhost:3000/seqstandard';
+  private apiUrl = 'http://localhost:3000/students';
+  private standardapiUrl = 'http://localhost:3000/standard';
 
   constructor(
     private http: HttpClient

@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './compnents/header/header.component';
-import { FooterComponent } from './compnents/footer/footer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginService } from './services/login/login.service';
 import { TokenService } from './services/token/token.service';
+import { HeaderComponent } from './compnents/commoncomponents/header/header.component';
+import { FooterComponent } from './compnents/commoncomponents/footer/footer.component';
 
 @Component({
   selector: 'app-root',
