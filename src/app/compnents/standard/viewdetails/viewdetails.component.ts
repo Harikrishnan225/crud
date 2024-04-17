@@ -34,8 +34,4 @@ export class ViewdetailsComponent implements OnInit {
       // console.log(this.standardDetails[0].students[0].firstName);
     });
   }
-
-  standardHome() {
-    this.location.back()
-  }
 }

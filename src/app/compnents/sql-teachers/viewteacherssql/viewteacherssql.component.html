@@ -1,13 +1,13 @@
 <div class="container">
     <div *ngIf="noTeachersData">
         <app-emptyscreen name="teacher" [msg]="teacheres">
-            <app-button [btnName]="teacherBtnName" (click)="addTeachers()"></app-button>
+            <app-button [btnName]="teacherBtnName" (click)="addsqlTeachers()"></app-button>
         </app-emptyscreen>
     </div>
     <div *ngIf="!noTeachersData">
         <div class="row">
             <div class="text-end mt-4">
-                <app-button [btnName]="teacherBtnName" (click)="addTeachers()"></app-button>
+                <app-button [btnName]="teacherBtnName" (click)="addsqlTeachers()"></app-button>
             </div>
         </div>
         <div class="row">
@@ -25,15 +25,15 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let teachers of teachersData">
-                            <td>{{teachers.firstName}}</td>
-                            <td>{{teachers.lastName}}</td>
+                            <td>{{teachers.first_name}}</td>
+                            <td>{{teachers.last_name}}</td>
                             <td>{{teachers.age}}</td>
                             <td>{{teachers.email}}</td>
                             <td>{{teachers.standard}}</td>
                             <td>
                                 <a class="btn btn-warning btn-sm m-1"
-                                    [routerLink]="['/sqlteachers/edit', teachers._id]">Edit</a>
-                                <a class="btn btn-danger btn-sm" (click)="deleteItem(teachers._id)">Delete</a>
+                                    [routerLink]="['/sqlteachers/edit',teachers.id]">Edit</a>
+                                <a class="btn btn-danger btn-sm" (click)="deleteItem(teachers.id)">Delete</a>
                             </td>
                         </tr>
                     </tbody>

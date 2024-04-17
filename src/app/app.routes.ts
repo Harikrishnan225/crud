@@ -8,6 +8,16 @@ import { StudentdetailsviewComponent } from './compnents/studentdetails/studentd
 import { EmptyscreenComponent } from './compnents/emptyscreen/emptyscreen.component';
 import { StandardComponent } from './compnents/standard/standard/standard.component';
 import { ViewdetailsComponent } from './compnents/standard/viewdetails/viewdetails.component';
+import { AddteacherssqlComponent } from './compnents/sql-teachers/addteacherssql/addteacherssql.component';
+import { ViewteacherssqlComponent } from './compnents/sql-teachers/viewteacherssql/viewteacherssql.component';
+import { EditteacherssqlComponent } from './compnents/sql-teachers/editteacherssql/editteacherssql.component';
+import { EditstudentsqlComponent } from './compnents/sql-student/editstudentsql/editstudentsql.component';
+import { AddstudentsqlComponent } from './compnents/sql-student/addstudentsql/addstudentsql.component';
+import { ViewstudentsqlComponent } from './compnents/sql-student/viewstudentsql/viewstudentsql.component';
+import { SeqstandardComponent } from './compnents/seqstandard/seqstandard/seqstandard.component';
+import { SeqaddstandardComponent } from './compnents/seqstandard/seqaddstandard/seqaddstandard.component';
+import { SeqviewstandardComponent } from './compnents/seqstandard/seqviewstandard/seqviewstandard.component';
+import { SeqeditstandardComponent } from './compnents/seqstandard/seqeditstandard/seqeditstandard.component';
 
 export const routes: Routes = [
     {
@@ -78,8 +88,48 @@ export const routes: Routes = [
         component: ViewdetailsComponent
     },
     {
+        path: 'sqlteachers/add',
+        component: AddteacherssqlComponent
+    },
+    {
+        path: 'sqlteachers/view',
+        component: ViewteacherssqlComponent
+    },
+    {
+        path: 'sqlteachers/edit/:id',
+        component: EditteacherssqlComponent
+    },
+    {
         path: 'toaster',
         component: ToasterComponent
+    },
+    {
+        path: 'studentsql/view',
+        component: ViewstudentsqlComponent
+    },
+    {
+        path: 'studentsql/edit/:id',
+        component: EditstudentsqlComponent
+    },
+    {
+        path: 'studentsql/add',
+        component: AddstudentsqlComponent
+    },
+    {
+        path: 'seqStandards',
+        component: SeqstandardComponent
+    },
+    {
+        path: 'seqstandard/add',
+        component: SeqaddstandardComponent
+    },
+    {
+        path: 'seqstandard/view',
+        component: SeqviewstandardComponent
+    },
+    {
+        path: 'seqstandard/edit/:id',
+        component: SeqeditstandardComponent
     },
     {
         path: '',

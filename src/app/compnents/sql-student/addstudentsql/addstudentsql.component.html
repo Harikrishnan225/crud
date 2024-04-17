@@ -2,17 +2,17 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title text-center">Teachers Details</h2>
+                <h2 class="card-title text-center">Student Details</h2>
             </div>
             <div class="card-body">
-                <form [formGroup]="teacherAddingForm" (ngSubmit)="teacherFormSubmit()">
+                <form [formGroup]="studentAddingSqlForm" (ngSubmit)="studentFormSubmit()">
 
                     <div class="mb-3 row">
                         <label for="firstName" class="col-sm-3 col-form-label">First Name:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="firstName" class="form-control" formControlName="firstName">
+                            <input type="text" id="first_name" class="form-control" formControlName="first_name">
                             <span
-                                *ngIf="teacherAddingForm.get('firstName')?.hasError('required') && teacherAddingForm.get('firstName')?.touched"
+                                *ngIf="studentAddingSqlForm.get('firstName')?.hasError('required') && studentAddingSqlForm.get('firstName')?.touched"
                                 class="text-danger">teacher first name is required</span>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                     <div class="mb-3 row">
                         <label for="lastName" class="col-sm-3 col-form-label">Last Name:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="lastName" class="form-control" formControlName="lastName">
+                            <input type="text" id="last_name" class="form-control" formControlName="last_name">
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
                         <div class="col-sm-8">
                             <input type="number" id="age" class="form-control" formControlName="age">
                             <span
-                                *ngIf="teacherAddingForm.get('age')?.hasError('required') && teacherAddingForm.get('age')?.touched"
+                                *ngIf="studentAddingSqlForm.get('age')?.hasError('required') && studentAddingSqlForm.get('age')?.touched"
                                 class="text-danger">teacher
                                 age is required</span>
                         </div>
@@ -40,7 +40,7 @@
                         <div class="col-sm-8">
                             <input type="email" id="email" class="form-control" formControlName="email">
                             <span
-                                *ngIf="teacherAddingForm.get('email')?.hasError('required') && teacherAddingForm.get('email')?.touched"
+                                *ngIf="studentAddingSqlForm.get('email')?.hasError('required') && studentAddingSqlForm.get('email')?.touched"
                                 class="text-danger">teacher email
                                 is required</span>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="col-sm-8">
                             <input type="password" id="password" class="form-control" formControlName="password">
                             <span
-                                *ngIf="teacherAddingForm.get('password')?.hasError('required') && teacherAddingForm.get('password')?.touched"
+                                *ngIf="studentAddingSqlForm.get('password')?.hasError('required') && studentAddingSqlForm.get('password')?.touched"
                                 class="text-danger">teacher password is required</span>
                         </div>
                     </div>
@@ -60,18 +60,17 @@
                         <label for="standard" class="col-sm-3 col-form-label">Standard:</label>
                         <div class="col-sm-8">
                             <select id="standard" class="form-select" formControlName="standard">
-                                <option value="none">Select Standard</option>
-                                <option *ngFor="let standard of dropDownData" [ngValue]="standard._id">
+                                <option value="none" [selected]="true">Select Standard</option>
+                                <option *ngFor="let standard of dropDownData" [ngValue]="standard.id">
                                     {{standard.standard}}</option>
                             </select>
                         </div>
                     </div>
 
-
                     <div class="mb-3 row">
                         <div class="col-sm-8 offset-sm-3 text-center">
-                            <button type="submit" class="btn btn-primary" 
-                                [disabled]="teacherAddingForm.invalid">Submit</button>
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="studentAddingSqlForm.invalid">Submit</button>
                         </div>
                     </div>
 

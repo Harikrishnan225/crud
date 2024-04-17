@@ -27,6 +27,7 @@ export class StandardaddComponent implements OnInit {
       standard: ['', Validators.required]
     })
   }
+  
   standardFormSubmit() {
     if (this.standardAddingForm.valid) {
       this.standardService.addStandard(this.standardAddingForm.value).subscribe(
