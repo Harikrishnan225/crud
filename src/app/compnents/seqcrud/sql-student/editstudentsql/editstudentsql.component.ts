@@ -70,7 +70,7 @@ export class EditstudentsqlComponent implements OnInit {
 
       this.seqStudentService.updateStudent(studentId, updateData).subscribe(() => {
         this.toaster.success('Student Updated Successfully');
-        this.router.navigateByUrl('/studentsql/view');
+        this.router.navigateByUrl('/student/view');
       }, err => {
         this.toaster.error('StudentData is not Updated' + err);
       })

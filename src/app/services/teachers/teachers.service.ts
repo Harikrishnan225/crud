@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class TeachersService {
 
   private apiUrl = 'http://localhost:3000/teachers';
-  private standardapiUrl = 'http://localhost:3000/standards';
+  private standardapiUrl = 'http://localhost:3000/standard';
 
   constructor(
     private http: HttpClient

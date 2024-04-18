@@ -19,6 +19,7 @@ export class TeachereditComponent {
   teachersId: any;
   updates: any;
   teacherValueId: any;
+  dropDownData: any;
 
   constructor(private fb: FormBuilder,
     private teachersService: TeachersService,
@@ -38,9 +39,11 @@ export class TeachereditComponent {
     this.activatedRoute.params.subscribe(teacherDetailsId => {
       this.teachersId = teacherDetailsId['id'];
     }, err => {
-     this.toaster.error('Cant able to fetch teachersId' + err);
+      this.toaster.error('Cant able to fetch teachersId' + err);
     });
-
+    this.teachersService.getDropDownData().subscribe(res => {
+      this.dropDownData = res
+    })
     this.getteachersData();
   }
 
@@ -48,11 +51,12 @@ export class TeachereditComponent {
     this.teachersService.getTeachersDataById(this.teachersId).subscribe(teachersData => {
       this.selectedTeachers = teachersData;
       console.log(teachersData);
-      
+
       if (this.selectedTeachers) {
         this.teachersDetailsUpdatedForm.patchValue({
-          firstName: this.selectedTeachers.first_name,
-          lastName: this.selectedTeachers.last_name,
+          teachersId: this.selectedTeachers.id,
+          first_name: this.selectedTeachers.first_name,
+          last_name: this.selectedTeachers.last_name,
           age: this.selectedTeachers.age,
           email: this.selectedTeachers.email,
           standard: this.selectedTeachers.standard
@@ -66,8 +70,8 @@ export class TeachereditComponent {
     if (this.teachersDetailsUpdatedForm.valid) {
       const updatedValue = this.teachersDetailsUpdatedForm.value;
       console.log(updatedValue);
-      
-      const teachersId = this.selectedTeachers._id;
+
+      const teachersId = this.selectedTeachers.id;
       this.teachersService.updateTeachersDataId(teachersId, updatedValue).subscribe(
         () => {
           this.toaster.success('Teacher updated successfully');

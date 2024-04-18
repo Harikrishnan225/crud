@@ -18,8 +18,8 @@
                 <tbody>
                     <tr *ngFor="let standard of standardDetails">
                         <td>{{standard.standard}}</td>
-                        <td>{{standard.students.length}}</td>
-                        <td>{{standard.teachers.length}}</td>
+                        <td>{{standard.studentCount}}</td>
+                        <td>{{standard.teachersCount}}</td>
                         <td>
                             <a class="btn btn-success btn-sm m-1" [routerLink]="['/standard/view', standard.id]">View Details</a>
                             <a class="btn btn-warning btn-sm m-1"

@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class SqlteachersService {
 
-  private apiUrl = 'http://localhost:3000/teachers';
-  private standardapiUrl = 'http://localhost:3000/standard';
+  private apiUrl = 'http://localhost:3000/teachersseq';
+  private standardapiUrl = 'http://localhost:3000/standardseq';
 
   constructor(
     private http: HttpClient

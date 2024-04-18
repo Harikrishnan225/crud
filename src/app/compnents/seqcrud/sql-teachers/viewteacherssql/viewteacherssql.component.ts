@@ -46,7 +46,7 @@ export class ViewteacherssqlComponent implements OnInit {
 
 
   addsqlTeachers() {
-    this.router.navigateByUrl('/sqlteachers/add')
+    this.router.navigateByUrl('/teachers/add')
   }
 
   deleteItem(teachersid: any) {

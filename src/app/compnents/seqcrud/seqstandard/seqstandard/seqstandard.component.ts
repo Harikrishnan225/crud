@@ -38,7 +38,7 @@ export class SeqstandardComponent {
   }
 
   addStandard() {
-    this.router.navigateByUrl('/seqstandard/add');
+    this.router.navigateByUrl('/standard/add');
   }
 
   deleteItem(standardid: any) {

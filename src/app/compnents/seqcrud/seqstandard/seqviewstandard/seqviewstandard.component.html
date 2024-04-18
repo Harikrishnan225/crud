@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <div>
+            <h3>Students Table</h3>
             <table class="table table-striped border">
                 <thead>
                     <tr>
@@ -13,14 +14,15 @@
                 <tbody>
                     <tr *ngFor="let student of standardDetails?.students">
                         <td>{{student.id}}</td>
-                        <td>{{student.firstName}}</td>
-                        <td>{{student.lastName}}</td>
+                        <td>{{student.first_name}}</td>
+                        <td>{{student.last_name}}</td>
                         <td>{{student.standard}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div>
+            <h3>Teachers Table</h3>
             <table class="table table-striped border">
                 <thead>
                     <tr>
@@ -33,8 +35,8 @@
                 <tbody>
                     <tr *ngFor="let teacher of standardDetails?.teachers">
                         <td>{{teacher.id}}</td>
-                        <td>{{teacher.firstName}}</td>
-                        <td>{{teacher.lastName}}</td>
+                        <td>{{teacher.first_name}}</td>
+                        <td>{{teacher.last_name}}</td>
                         <td>{{teacher.standard}}</td>
                     </tr>
                 </tbody>
